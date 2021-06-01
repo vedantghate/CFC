@@ -1,0 +1,47 @@
+.formPage {
+    text-align: center;
+    padding-bottom: 5rem;
+
+    .inputsContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+
+        margin: 5rem 2rem 5rem 2rem;
+
+        .inputField {
+            //width: 20%;
+            margin: 1.5rem;
+
+            .label{
+                font-size: 0.82rem;
+                color: #5A6169;
+            }
+
+            .textbox{
+                border: 1px solid #E1E5EB;
+                //box-sizing: border-box;
+                border-radius: 4px;
+                height: 2rem;
+                //width: 10rem;
+            }
+        }
+    }
+
+    .invalid-feedback {
+        color: #e55858;
+        font-size: 0.75rem;
+    }
+
+    .btn{
+        width: 5rem;
+        min-height: 2rem;
+        border-radius: 3px;
+        padding: 6px 20px;
+        border: none;
+        background: #16478e;
+        color: #ffffff;
+        font-size: 14px;
+        cursor: pointer;
+    }
+}

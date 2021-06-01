@@ -1,0 +1,238 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="formPage">
+
+    <div class="inputsContainer">
+        <div class="inputField">
+            <label class="label" for="clubName">Club Name</label><br />
+            <input type="text" formControlName="clubName" class="textbox" autocomplete="no" />
+            <div *ngIf="submitted && f.clubName.errors" class="invalid-feedback">
+                <div *ngIf="f.clubName.errors.required">Club Name is required</div>
+            </div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="mobileNo">Mobie Number</label><br />
+            <input type="tel" formControlName="mobileNo" maxlength="13" class="textbox" autocomplete="no" placeholder="+91XXXXXXXXXX"/>
+            <div *ngIf="submitted && f.mobileNo.errors" class="invalid-feedback">
+                <div *ngIf="f.mobileNo.errors.required">Mobie Number is required</div>
+                <div *ngIf="f.mobileNo.errors.pattern">Incorrect mobile number</div>
+            </div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="dateOfMeet">Date of Meet/Event</label><br />
+            <input type="date" formControlName="dateOfMeet" class="textbox" autocomplete="no" max="{{todaysdate|date:'yyyy-MM-dd'}}"/>
+            <div *ngIf="submitted && f.dateOfMeet.errors" class="invalid-feedback">
+                <div *ngIf="f.dateOfMeet.errors.required">Date is required</div>
+            </div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="memberCount">Member Count</label><br />
+            <input type="number" formControlName="memberCount" class="textbox" autocomplete="no" min="1"/>
+            <div *ngIf="submitted && f.memberCount.errors" class="invalid-feedback">
+                <div *ngIf="f.memberCount.errors.required">Member Count is required</div>
+            </div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="fourWCount">Four Wheelers Count</label><br />
+            <input type="number" formControlName="fourWCount" class="textbox" autocomplete="no" min="0"/>
+            <div *ngIf="submitted && f.fourWCount.errors" class="invalid-feedback">
+                <div *ngIf="f.fourWCount.errors.required">Four Wheelers' Count is required</div>
+            </div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="twoWCount">Two Wheelers Count</label><br />
+            <input type="number" formControlName="twoWCount" class="textbox" autocomplete="no" min="0"/>
+            <div *ngIf="submitted && f.twoWCount.errors" class="invalid-feedback">
+                <div *ngIf="f.twoWCount.errors.required">Two Wheelers' Count is required</div>
+            </div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="duration">Duration(in hours)</label><br />
+            <input type="number" formControlName="duration" class="textbox" autocomplete="no" min="0"/>
+            <div *ngIf="submitted && f.duration.errors" class="invalid-feedback">
+                <div *ngIf="f.duration.errors.required">Duration is required</div>
+            </div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="lightsCount">Number of Lights Used</label><br />
+            <input type="number" formControlName="lightsCount" class="textbox" autocomplete="no" min="0"/>
+            <div *ngIf="submitted && f.lightsCount.errors" class="invalid-feedback">
+                <div *ngIf="f.lightsCount.errors.required">Number of Lights Used is required</div>
+            </div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="fansCount">Number of Fans Used</label><br />
+            <input type="number" formControlName="fansCount" class="textbox" autocomplete="no" min="0"/>
+            <div *ngIf="submitted && f.fansCount.errors" class="invalid-feedback">
+                <div *ngIf="f.fansCount.errors.required">Number of Fans Used is required</div>
+            </div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="audioCount">Audio Systems Used</label><br />
+            <input type="number" formControlName="audioCount" class="textbox" autocomplete="no" min="0"/>
+            <div *ngIf="submitted && f.audioCount.errors" class="invalid-feedback">
+                <div *ngIf="f.audioCount.errors.required">Audio Systems Used is required</div>
+            </div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="micCount">Mics Used</label><br />
+            <input type="number" formControlName="micCount" class="textbox" autocomplete="no" min="0"/>
+            <div *ngIf="submitted && f.micCount.errors" class="invalid-feedback">
+                <div *ngIf="f.micCount.errors.required">Mics Used is required</div>
+            </div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="projectorCount">Projectors Used</label><br />
+            <input type="number" formControlName="projectorCount" class="textbox" autocomplete="no" min="0"/>
+            <div *ngIf="submitted && f.projectorCount.errors" class="invalid-feedback">
+                <div *ngIf="f.projectorCount.errors.required">Projectors Used is required</div>
+            </div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="acCount">AC Systems Used</label><br />
+            <input type="number" formControlName="acCount" class="textbox" autocomplete="no" min="0"/>
+            <div *ngIf="submitted && f.acCount.errors" class="invalid-feedback">
+                <div *ngIf="f.acCount.errors.required">AC Systems Used is required</div>
+            </div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="beverageCount">Beverages Served(Tea/Coffee)</label><br />
+            <input type="number" formControlName="beverageCount" class="textbox" autocomplete="no" min="0"/>
+            <div *ngIf="submitted && f.beverageCount.errors" class="invalid-feedback">
+                <div *ngIf="f.beverageCount.errors.required">Beverages Served is required</div>
+            </div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="vegBreakfastCount">Breakfast Served(Veg)</label><br />
+            <input type="number" formControlName="vegBreakfastCount" class="textbox" autocomplete="no" min="0"/>
+            <!-- <div *ngIf="submitted && f.vegBreakfastCount.errors" class="invalid-feedback">
+                <div *ngIf="f.vegBreakfastCount.errors.required">Breakfast Served is required</div>
+            </div> -->
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="nonvegBreakfastCount">Breakfast Served(Non-Veg)</label><br />
+            <input type="number" formControlName="nonvegBreakfastCount" class="textbox" autocomplete="no" min="0"/>
+            <!-- <div *ngIf="submitted && f.nonvegBreakfastCount.errors" class="invalid-feedback">
+                <div *ngIf="f.nonvegBreakfastCount.errors.required">Breakfast Served is required</div>
+            </div> -->
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="vegSnacksCount">Snacks Served(Veg)</label><br />
+            <input type="number" formControlName="vegSnacksCount" class="textbox" autocomplete="no" min="0"/>
+            <!-- <div *ngIf="submitted && f.vegSnacksCount.errors" class="invalid-feedback">
+                <div *ngIf="f.vegSnacksCount.errors.required">Snacks Served is required</div>
+            </div> -->
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="nonvegSnacksCount">Snacks Served(Non-Veg)</label><br />
+            <input type="number" formControlName="nonvegSnacksCount" class="textbox" autocomplete="no" min="0"/>
+            <!-- <div *ngIf="submitted && f.nonvegSnacksCount.errors" class="invalid-feedback">
+                <div *ngIf="f.nonvegSnacksCount.errors.required">Snacks Served is required</div>
+            </div> -->
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="vegLunchCount">Lunch Served(Veg)</label><br />
+            <input type="number" formControlName="vegLunchCount" class="textbox" autocomplete="no" min="0"/>
+            <!-- <div *ngIf="submitted && f.vegLunchCount.errors" class="invalid-feedback">
+                <div *ngIf="f.vegLunchCount.errors.required">Lunch Served is required</div>
+            </div> -->
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="nonvegLunchCount">Lunch Served(Non-Veg)</label><br />
+            <input type="number" formControlName="nonvegLunchCount" class="textbox" autocomplete="no" min="0"/>
+            <!-- <div *ngIf="submitted && f.nonvegLunchCount.errors" class="invalid-feedback">
+                <div *ngIf="f.nonvegLunchCount.errors.required">Lunch Served is required</div>
+            </div> -->
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="vegDinnerCount">Dinner Served(Veg)</label><br />
+            <input type="number" formControlName="vegDinnerCount" class="textbox" autocomplete="no" min="0"/>
+            <!-- <div *ngIf="submitted && f.vegDinnerCount.errors" class="invalid-feedback">
+                <div *ngIf="f.vegDinnerCount.errors.required">Dinner Served is required</div>
+            </div> -->
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="nonvegDinnerCount">Dinner Served(Non-Veg)</label><br />
+            <input type="number" formControlName="nonvegDinnerCount" class="textbox" autocomplete="no" min="0"/>
+            <!-- <div *ngIf="submitted && f.nonvegDinnerCount.errors" class="invalid-feedback">
+                <div *ngIf="f.nonvegDinnerCount.errors.required">Dinner Served is required</div>
+            </div> -->
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="giftCount">Gifts Exchanged</label><br />
+            <input type="number" formControlName="giftCount" class="textbox" autocomplete="no" min="0"/>
+            <div *ngIf="submitted && f.giftCount.errors" class="invalid-feedback">
+                <div *ngIf="f.giftCount.errors.required">Gifts Exchanged is required</div>
+            </div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="guestCount">Guests Invited</label><br />
+            <input type="number" formControlName="guestCount" class="textbox" autocomplete="no" min="0"/>
+            <div *ngIf="submitted && f.guestCount.errors" class="invalid-feedback">
+                <div *ngIf="f.guestCount.errors.required">Guests Invited is required</div>
+            </div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="guestTravelMode">Guests Travel Mode</label><br />
+            <select formControlName="guestTravelMode" class="textbox">
+                <option value="" disabled>Choose a Mode</option>
+                <option ngValue="road">Road</option>
+                <option ngValue="rail">Rail</option>
+                <option ngValue="air">Air</option>
+            </select>            
+            <div *ngIf="submitted && f.guestTravelMode.errors" class="invalid-feedback">
+                <div *ngIf="f.guestTravelMode.errors.required">Guests Travel Mode is required</div>
+            </div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="guestStayPeriod">Guest Stay Duration(in days)</label><br />
+            <input type="number" formControlName="guestStayPeriod" class="textbox" autocomplete="no" min="0"/>
+            <div *ngIf="submitted && f.guestStayPeriod.errors" class="invalid-feedback">
+                <div *ngIf="f.guestStayPeriod.errors.required">Guest Stay Duration is required</div>
+            </div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="emailCount">Emails Exchanged</label><br />
+            <input type="number" formControlName="emailCount" class="textbox" autocomplete="no" min="0"/>
+            <div *ngIf="submitted && f.emailCount.errors" class="invalid-feedback">
+                <div *ngIf="f.emailCount.errors.required">Guests Invited is required</div>
+            </div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="socialMediaMessageCount">Social Media Messages Exchanged</label><br />
+            <input type="number" formControlName="socialMediaMessageCount" class="textbox" autocomplete="no" min="0"/>
+            <div *ngIf="submitted && f.socialMediaMessageCount.errors" class="invalid-feedback">
+                <div *ngIf="f.socialMediaMessageCount.errors.required">Social Media Messages Exchanged is required</div>
+            </div>
+        </div>
+
+    </div>
+
+    <button class="btn">Submit</button>
+
+</form>
