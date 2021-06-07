@@ -4,6 +4,7 @@ import { PhysicalMeetRoutingModule } from './physical-meet-routing.module';
 import { PhysicalMeetComponent } from './components/physical-meet/physical-meet.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     PhysicalMeetRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatExpansionModule
   ]
 })
 export class PhysicalMeetModule { }

@@ -3,29 +3,39 @@
     padding-bottom: 5rem;
 
     .inputsContainer {
-        display: flex;
+        background-color: aliceblue;
+        padding: 2rem;
         flex-wrap: wrap;
-        justify-content: space-evenly;
-
         margin: 5rem 2rem 5rem 2rem;
+        margin-left: 30%;
+        margin-right: 30%;
 
         .inputField {
             //width: 20%;
             margin: 1.5rem;
+            display: flex;
+            justify-content: space-between;
 
-            .label{
+            .label {
                 font-size: 0.82rem;
-                color: #5A6169;
+                color: #5a6169;
+                align-self: center;
             }
 
-            .textbox{
-                border: 1px solid #E1E5EB;
+            .textbox {
+                border: 1px solid #e1e5eb;
                 //box-sizing: border-box;
                 border-radius: 4px;
                 height: 2rem;
                 //width: 10rem;
+                background-color: #fff;
+            }
+
+            .mob{
+                width: 11.5rem;
             }
         }
+
     }
 
     .invalid-feedback {
@@ -33,7 +43,7 @@
         font-size: 0.75rem;
     }
 
-    .btn{
+    .btn {
         width: 5rem;
         min-height: 2rem;
         border-radius: 3px;
@@ -44,4 +54,26 @@
         font-size: 14px;
         cursor: pointer;
     }
+}
+
+
+.mat-accordion{
+    width: 100%;
+}
+
+
+.mat-expansion-panel{
+    box-shadow: none;
+    background: none;
+    color: #5a6169;
+}
+
+.mat-expansion-panel-header {
+    padding: 0px 10px 0px 0px;
+}
+
+.mat-expansion-panel-header-title{
+    font-size: 0.82rem;
+    color: #5a6169;
+    align-self: center;
 }

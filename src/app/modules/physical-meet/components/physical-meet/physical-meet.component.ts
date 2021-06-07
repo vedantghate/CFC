@@ -10,14 +10,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class PhysicalMeetComponent implements OnInit {
 
   public form: FormGroup;
-  public submitted:boolean = false;
+  public submitted: boolean = false;
   public todaysdate: Date = new Date();
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       clubName: ['', Validators.required],
-      mobileNo: ['', [Validators.required, Validators.pattern('\\+[0-9]{12}')]],
+      mobileNo: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
       dateOfMeet: ['', Validators.required],
       memberCount: ['', Validators.required],
       fourWCount: ['', Validators.required],
@@ -46,14 +46,23 @@ export class PhysicalMeetComponent implements OnInit {
       socialMediaMessageCount: ['', Validators.required]
     }
     );
+
+
+    const phoneInputField = document.querySelector("#phone");
+    const phoneInput = (<any>window).intlTelInput(phoneInputField, {
+      preferredCountries: ["in"],
+      utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
   }
 
   get f() { return this.form.controls; }
 
   submit() {
     this.submitted = true;
-    console.log(this.form.value);
-    window.alert("Submitted Successfully");
+    if(!this.form.invalid){
+      window.alert("Submitted Successfully");
+    }    
   }
 
 }

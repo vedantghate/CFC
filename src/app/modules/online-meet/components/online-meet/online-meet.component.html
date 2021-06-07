@@ -11,7 +11,7 @@
 
         <div class="inputField">
             <label class="label" for="mobileNo">Mobie Number</label><br />
-            <input type="tel" formControlName="mobileNo" maxlength="13" class="textbox" autocomplete="no" placeholder="+91XXXXXXXXXX"/>
+            <input id="phone" type="tel" formControlName="mobileNo" maxlength="10" class="textbox mob" autocomplete="no" placeholder="+91XXXXXXXXXX"/>
             <div *ngIf="submitted && f.mobileNo.errors" class="invalid-feedback">
                 <div *ngIf="f.mobileNo.errors.required">Mobie Number is required</div>
                 <div *ngIf="f.mobileNo.errors.pattern">Incorrect mobile number</div>
@@ -52,7 +52,7 @@
 
         <div class="inputField">
             <label class="label" for="dateOfMeet">Date of Meet/Event</label><br />
-            <input type="date" formControlName="dateOfMeet" class="textbox" autocomplete="no" max="{{todaysdate|date:'yyyy-MM-dd'}}"/>
+            <input type="date" formControlName="dateOfMeet" class="textbox mob" autocomplete="no" max="{{todaysdate|date:'yyyy-MM-dd'}}"/>
             <div *ngIf="submitted && f.dateOfMeet.errors" class="invalid-feedback">
                 <div *ngIf="f.dateOfMeet.errors.required">Date is required</div>
             </div>
