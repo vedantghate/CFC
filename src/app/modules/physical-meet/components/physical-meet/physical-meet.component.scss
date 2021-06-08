@@ -1,17 +1,16 @@
 .formPage {
     text-align: center;
     padding-bottom: 5rem;
+    padding-left: 15%;
+    padding-right: 15%;
 
     .inputsContainer {
         background-color: aliceblue;
         padding: 2rem;
         flex-wrap: wrap;
         margin: 5rem 2rem 5rem 2rem;
-        margin-left: 30%;
-        margin-right: 30%;
 
         .inputField {
-            //width: 20%;
             margin: 1.5rem;
             display: flex;
             justify-content: space-between;
@@ -20,27 +19,32 @@
                 font-size: 0.82rem;
                 color: #5a6169;
                 align-self: center;
+                text-align: left;
             }
 
             .textbox {
                 border: 1px solid #e1e5eb;
-                //box-sizing: border-box;
                 border-radius: 4px;
                 height: 2rem;
-                //width: 10rem;
                 background-color: #fff;
             }
 
-            .mob{
-                width: 11.5rem;
+            .mob {
+                width: 11rem;
             }
         }
+    }
 
+    .required {
+        color: #e55858;
+        font-size: 0.75rem;
     }
 
     .invalid-feedback {
         color: #e55858;
         font-size: 0.75rem;
+        text-align: right;
+        margin: -1rem 1.5rem 0rem 0rem;
     }
 
     .btn {
@@ -56,13 +60,11 @@
     }
 }
 
-
-.mat-accordion{
+.mat-accordion {
     width: 100%;
 }
 
-
-.mat-expansion-panel{
+.mat-expansion-panel {
     box-shadow: none;
     background: none;
     color: #5a6169;
@@ -72,7 +74,7 @@
     padding: 0px 10px 0px 0px;
 }
 
-.mat-expansion-panel-header-title{
+.mat-expansion-panel-header-title {
     font-size: 0.82rem;
     color: #5a6169;
     align-self: center;

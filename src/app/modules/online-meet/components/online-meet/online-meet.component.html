@@ -2,62 +2,67 @@
 
     <div class="inputsContainer">
         <div class="inputField">
-            <label class="label" for="clubName">Club Name</label><br />
+            <label class="label" for="clubName">Rotary Club of<span class="required"> *</span></label><br />
             <input type="text" formControlName="clubName" class="textbox" autocomplete="no" />
-            <div *ngIf="submitted && f.clubName.errors" class="invalid-feedback">
-                <div *ngIf="f.clubName.errors.required">Club Name is required</div>
-            </div>
+        </div>
+        <div *ngIf="submitted && f.clubName.errors" class="invalid-feedback">
+            <div *ngIf="f.clubName.errors.required">Club Name is required</div>
         </div>
 
         <div class="inputField">
-            <label class="label" for="mobileNo">Mobie Number</label><br />
-            <input id="phone" type="tel" formControlName="mobileNo" maxlength="10" class="textbox mob" autocomplete="no" placeholder="+91XXXXXXXXXX"/>
-            <div *ngIf="submitted && f.mobileNo.errors" class="invalid-feedback">
-                <div *ngIf="f.mobileNo.errors.required">Mobie Number is required</div>
-                <div *ngIf="f.mobileNo.errors.pattern">Incorrect mobile number</div>
-            </div>
+            <label class="label" for="mobileNo">Mobie Number<span class="required"> *</span></label><br />
+            <input id="phone" type="tel" formControlName="mobileNo" maxlength="10" class="textbox mob" autocomplete="no" placeholder="XXXXXXXXXX"/>
+        </div>
+        <div *ngIf="submitted && f.mobileNo.errors" class="invalid-feedback">
+            <div *ngIf="f.mobileNo.errors.required">Mobie Number is required</div>
+            <div *ngIf="f.mobileNo.errors.pattern">Incorrect mobile number</div>
         </div>
 
         <div class="inputField">
-            <label class="label" for="memberCount">Member Count</label><br />
-            <input type="number" formControlName="memberCount" class="textbox" autocomplete="no" min="1"/>
-            <div *ngIf="submitted && f.memberCount.errors" class="invalid-feedback">
-                <div *ngIf="f.memberCount.errors.required">Member Count is required</div>
-            </div>
+            <label class="label" for="email">Email<span class="required"> *</span></label><br/> 
+            <input type="text" formControlName="email" class="textbox" autocomplete="no" />
+        </div>
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email ID is required</div>
+            <div *ngIf="f.email.errors.pattern">Invalid Email ID</div>
         </div>
 
         <div class="inputField">
-            <label class="label" for="duration">Duration(in hours)</label><br />
-            <input type="number" formControlName="duration" class="textbox" autocomplete="no" min="0"/>
-            <div *ngIf="submitted && f.duration.errors" class="invalid-feedback">
-                <div *ngIf="f.duration.errors.required">Duration is required</div>
-            </div>
-        </div>
-
-        <div class="inputField">
-            <label class="label" for="emailCount">Emails Exchanged</label><br />
-            <input type="number" formControlName="emailCount" class="textbox" autocomplete="no" min="0"/>
-            <div *ngIf="submitted && f.emailCount.errors" class="invalid-feedback">
-                <div *ngIf="f.emailCount.errors.required">Guests Invited is required</div>
-            </div>
-        </div>
-
-        <div class="inputField">
-            <label class="label" for="socialMediaMessageCount">Social Media Messages Exchanged</label><br />
-            <input type="number" formControlName="socialMediaMessageCount" class="textbox" autocomplete="no" min="0"/>
-            <div *ngIf="submitted && f.socialMediaMessageCount.errors" class="invalid-feedback">
-                <div *ngIf="f.socialMediaMessageCount.errors.required">Social Media Messages Exchanged is required</div>
-            </div>
-        </div>
-
-        <div class="inputField">
-            <label class="label" for="dateOfMeet">Date of Meet/Event</label><br />
+            <label class="label" for="dateOfMeet">DATE of the Meeting/ Event<span class="required"> *</span></label><br />
             <input type="date" formControlName="dateOfMeet" class="textbox mob" autocomplete="no" max="{{todaysdate|date:'yyyy-MM-dd'}}"/>
-            <div *ngIf="submitted && f.dateOfMeet.errors" class="invalid-feedback">
-                <div *ngIf="f.dateOfMeet.errors.required">Date is required</div>
-            </div>
+        </div>
+        <div *ngIf="submitted && f.dateOfMeet.errors" class="invalid-feedback">
+            <div *ngIf="f.dateOfMeet.errors.required">Date is required</div>
         </div>
 
+
+        <div class="inputField">
+            <label class="label" for="memberCount">NUMBER of MEMBERS Attended the Meeting/ Event<span class="required"> *</span></label><br />
+            <input type="number" formControlName="memberCount" class="textbox" autocomplete="no" min="1"/>
+        </div>
+        <div *ngIf="submitted && f.memberCount.errors" class="invalid-feedback">
+            <div *ngIf="f.memberCount.errors.required">Member Count is required</div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="duration">DURATION of the Meeting/ Event<span class="required"> *</span></label><br />
+            <input type="number" formControlName="duration" placeholder=" in minutes" class="textbox" autocomplete="no" min="0"/>
+        </div>
+        <div *ngIf="submitted && f.duration.errors" class="invalid-feedback">
+            <div *ngIf="f.duration.errors.required">Duration is required</div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="emailCount">NUMBER of EMAIL Communication(s) sent</label><br />
+            <input type="number" formControlName="emailCount" class="textbox" autocomplete="no" min="0"/>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="socialMediaMessageCount">NUMBER of WHATSAPP/ FACEBOOK Communication(s) sent</label><br />
+            <input type="number" formControlName="socialMediaMessageCount" class="textbox" autocomplete="no" min="0"/>
+        </div>
+
+        <span class="required">* - Mandatory to fill</span>
     </div>
 
     <button class="btn">Submit</button>

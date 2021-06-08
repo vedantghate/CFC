@@ -9,9 +9,11 @@ import {Router} from '@angular/router';
 export class AppComponent {
   title = 'CFC';
 
-  constructor(private router:Router){}
+  constructor(public router:Router){}
 
   ngOnInit(){
-    //this.router.navigate(['/home']);
+    if(this.router.url == '/'){
+      this.router.navigate(['/home']);
+    }
   }
 }
