@@ -23,7 +23,7 @@
             }
 
             .textbox {
-                border: 1px solid #e1e5eb;
+                border: 2px solid #33a5e8;
                 border-radius: 4px;
                 height: 2rem;
                 background-color: #fff;
@@ -78,4 +78,19 @@
     font-size: 0.82rem;
     color: #5a6169;
     align-self: center;
+}
+
+
+@media (max-width: 600px) {
+    .formPage .inputsContainer {
+        display: flex;
+        background-color: #fff;
+        padding: 0rem;
+        flex-wrap: wrap;
+        margin: 0rem;
+
+        .inputField{
+            display: block;
+        }
+    }
 }
