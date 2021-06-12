@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import * as XLSX from 'xlsx';
+
+import { ThanksDialogComponent } from '../thanks-dialog/thanks-dialog.component';
 
 @Component({
   selector: 'app-online-meet',
@@ -9,25 +12,30 @@ import * as XLSX from 'xlsx';
 })
 export class OnlineMeetComponent implements OnInit {
   public form: FormGroup;
-  public submitted:boolean = false;
+  public submitted: boolean = false;
+  public isPreview: boolean = false;
   public todaysdate: Date = new Date();
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, public dialog: MatDialog) { }
 
   fileName = 'CFC_Input_Online';
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      clubName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$')]],
-      mobileNo: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
-      dateOfMeet: ['', Validators.required],
-      duration: ['', Validators.required],
-      memberCount: ['', Validators.required],
-      emailCount: [''],
-      socialMediaMessageCount: ['']
+    if (!this.isPreview) {
+      this.form = this.formBuilder.group({
+        clubName: ['', Validators.required],
+        email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$')]],
+        mobileNo: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
+        dateOfMeet: ['', Validators.required],
+        duration: ['', Validators.required],
+        memberCount: ['', Validators.required],
+        emailCount: ['', Validators.required],
+        socialMediaMessageCount: ['', Validators.required]
+      }
+      );
     }
-    );
+  }
 
+  ngAfterViewInit() {
     const phoneInputField = document.querySelector("#phone");
     const phoneInput = (<any>window).intlTelInput(phoneInputField, {
       preferredCountries: ["in"],
@@ -38,13 +46,28 @@ export class OnlineMeetComponent implements OnInit {
 
   get f() { return this.form.controls; }
 
+  preview() {
+    this.isPreview = true;
+  }
+
   submit() {
     this.submitted = true;
-    if(!this.form.invalid){
+    if (!this.form.invalid) {
 
-      window.alert("Submitted Successfully");
+      this.openDialog();
+    }
+  }
+
+  openDialog(): void {
+    let dialogRef = this.dialog.open(ThanksDialogComponent, {
+      width: '30rem'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.submitted = false;
       this.exportAsXLSX();
-    }    
+      this.ngOnInit();
+    });
   }
 
 

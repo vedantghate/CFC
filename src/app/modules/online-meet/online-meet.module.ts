@@ -4,17 +4,21 @@ import { OnlineMeetRoutingModule } from './online-meet-routing.module';
 import { OnlineMeetComponent } from './components/online-meet/online-meet.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ThanksDialogComponent } from './components/thanks-dialog/thanks-dialog.component';
 
+import { MatDialogModule } from '@angular/material/dialog'
 
 @NgModule({
   declarations: [
-    OnlineMeetComponent
+    OnlineMeetComponent,
+    ThanksDialogComponent
   ],
   imports: [
     CommonModule,
     OnlineMeetRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ]
 })
 export class OnlineMeetModule { }

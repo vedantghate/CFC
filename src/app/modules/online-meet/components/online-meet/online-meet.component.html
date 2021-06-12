@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="submit()" class="formPage">
+<form [formGroup]="form" class="formPage">
 
     <div class="inputsContainer">
         <div class="inputField">
@@ -11,7 +11,8 @@
 
         <div class="inputField">
             <label class="label" for="mobileNo">Mobie Number<span class="required"> *</span></label><br />
-            <input id="phone" type="tel" formControlName="mobileNo" maxlength="10" class="textbox mob" autocomplete="no" placeholder="XXXXXXXXXX"/>
+            <input id="phone" type="tel" formControlName="mobileNo" maxlength="10" class="textbox mob" autocomplete="no"
+                placeholder="XXXXXXXXXX" />
         </div>
         <div *ngIf="submitted && f.mobileNo.errors" class="invalid-feedback">
             <div *ngIf="f.mobileNo.errors.required">Mobie Number is required</div>
@@ -19,7 +20,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="email">Email<span class="required"> *</span></label><br/> 
+            <label class="label" for="email">Email<span class="required"> *</span></label><br />
             <input type="text" formControlName="email" class="textbox" autocomplete="no" />
         </div>
         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
@@ -28,8 +29,10 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="dateOfMeet">DATE of the Meeting/ Event<span class="required"> *</span></label><br />
-            <input type="date" formControlName="dateOfMeet" class="textbox mob" autocomplete="no" max="{{todaysdate|date:'yyyy-MM-dd'}}"/>
+            <label class="label" for="dateOfMeet">DATE of the Meeting/ Event<span class="required">
+                    *</span></label><br />
+            <input type="date" formControlName="dateOfMeet" class="textbox mob" autocomplete="no"
+                max="{{todaysdate|date:'yyyy-MM-dd'}}" />
         </div>
         <div *ngIf="submitted && f.dateOfMeet.errors" class="invalid-feedback">
             <div *ngIf="f.dateOfMeet.errors.required">Date is required</div>
@@ -37,34 +40,95 @@
 
 
         <div class="inputField">
-            <label class="label" for="memberCount">NUMBER of MEMBERS Attended the Meeting/ Event<span class="required"> *</span></label><br />
-            <input type="number" formControlName="memberCount" class="textbox" autocomplete="no" min="1"/>
+            <label class="label" for="memberCount">NUMBER of MEMBERS Attended the Meeting/ Event<span class="required">
+                    *</span></label><br />
+            <input type="number" formControlName="memberCount" class="textbox" autocomplete="no" min="1" />
         </div>
         <div *ngIf="submitted && f.memberCount.errors" class="invalid-feedback">
             <div *ngIf="f.memberCount.errors.required">Member Count is required</div>
         </div>
 
         <div class="inputField">
-            <label class="label" for="duration">DURATION of the Meeting/ Event<span class="required"> *</span></label><br />
-            <input type="number" formControlName="duration" placeholder=" in minutes" class="textbox" autocomplete="no" min="0"/>
+            <label class="label" for="duration">DURATION of the Meeting/ Event<span class="required">
+                    *</span></label><br />
+            <input type="number" formControlName="duration" placeholder=" in minutes" class="textbox" autocomplete="no"
+                min="0" />
         </div>
         <div *ngIf="submitted && f.duration.errors" class="invalid-feedback">
             <div *ngIf="f.duration.errors.required">Duration is required</div>
         </div>
 
         <div class="inputField">
-            <label class="label" for="emailCount">NUMBER of EMAIL Communication(s) sent</label><br />
-            <input type="number" formControlName="emailCount" class="textbox" autocomplete="no" min="0"/>
+            <label class="label" for="emailCount">NUMBER of EMAIL Communication(s) sent<span class="required"> *</span></label><br />
+            <input type="number" formControlName="emailCount" class="textbox" autocomplete="no" min="0" />
+        </div>
+        <div *ngIf="submitted && f.emailCount.errors" class="invalid-feedback">
+            <div *ngIf="f.emailCount.errors.required">Number of Emails is required</div>
         </div>
 
         <div class="inputField">
-            <label class="label" for="socialMediaMessageCount">NUMBER of WHATSAPP/ FACEBOOK Communication(s) sent</label><br />
-            <input type="number" formControlName="socialMediaMessageCount" class="textbox" autocomplete="no" min="0"/>
+            <label class="label" for="socialMediaMessageCount">NUMBER of WHATSAPP/ FACEBOOK Communication(s)
+                sent<span class="required"> *</span></label><br />
+            <input type="number" formControlName="socialMediaMessageCount" class="textbox" autocomplete="no" min="0" />
+        </div>
+        <div *ngIf="submitted && f.socialMediaMessageCount.errors" class="invalid-feedback">
+            <div *ngIf="f.socialMediaMessageCount.errors.required">Number of Social Messages is required</div>
         </div>
 
         <span class="required">* - Mandatory to fill</span>
     </div>
 
-    <button class="btn">Submit</button>
+    <button (click)="preview()" class="btn">Preview</button>
+    <button (click)="submit()" class="btn">Submit</button>
 
 </form>
+
+<div *ngIf="isPreview" class="backdrop" (click)="isPreview = false"></div>
+
+<div *ngIf="isPreview" class="formPage preview">
+    <h3>Preview</h3>
+    <div class="inputsContainer">
+        <div class="inputField">
+            <label class="label">Rotary Club of</label>
+            <span type="text" class="previewText" >{{f.clubName.value}}</span>
+        </div>
+
+        <div class="inputField">
+            <label class="label">Mobie Number</label>
+            <span id="phone" class="previewText">{{f.mobileNo.value}}</span>
+        </div>
+
+        <div class="inputField">
+            <label class="label">Email</label>
+            <span class="previewText">{{f.email.value}}</span>
+        </div>
+
+        <div class="inputField">
+            <label class="label">DATE of the Meeting/ Event</label>
+            <span type="date" class="previewText">{{f.dateOfMeet.value}}</span>
+        </div>
+
+        <div class="inputField">
+            <label class="label">NUMBER of MEMBERS Attended the Meeting/ Event</label>
+            <span type="number" class="previewText">{{f.memberCount.value}}</span>
+        </div>
+
+        <div class="inputField">
+            <label class="label">DURATION of the Meeting/ Event</label>
+            <span type="number" class="previewText">{{f.duration.value}} minutes</span>
+        </div>
+
+        <div class="inputField">
+            <label class="label">NUMBER of EMAIL Communication(s) sent</label>
+            <span type="number" class="previewText">{{f.emailCount.value}}</span>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="socialMediaMessageCount">NUMBER of WHATSAPP/ FACEBOOK Communication(s)
+                sent</label>
+            <span type="number" class="previewText">{{f.socialMediaMessageCount.value}}</span>
+        </div>
+
+    </div>
+    <button (click)="isPreview = false" class="btn">Close</button>
+</div>

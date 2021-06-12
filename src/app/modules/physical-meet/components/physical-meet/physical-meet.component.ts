@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import * as XLSX from 'xlsx';
+import { ThanksDialogComponent } from '../thanks-dialog/thanks-dialog.component';
+
 
 
 @Component({
@@ -12,48 +15,54 @@ export class PhysicalMeetComponent implements OnInit {
 
   public form: FormGroup;
   public submitted: boolean = false;
+  public isPreview: boolean = false;
   public todaysdate: Date = new Date();
 
   fileName = 'CFC_Input_Physical';
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      clubName: ['', Validators.required],
-      email: ['', [Validators.required,Validators.pattern('^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$')]],
-      mobileNo: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
-      dateOfMeet: ['', Validators.required],
-      memberCount: ['', Validators.required],
-      fourWCount: ['', Validators.required],
-      twoWCount: ['', Validators.required],
-      duration: ['', Validators.required],
-      lightsCount: ['', Validators.required],
-      fansCount: ['', Validators.required],
-      audioCount: ['', Validators.required],
-      micCount: ['', Validators.required],
-      projectorCount: ['', Validators.required],
-      acCount: ['', Validators.required],
-      beverageCount: ['', Validators.required],
-      vegBreakfastCount: [''],
-      nonvegBreakfastCount: [''],
-      vegSnacksCount: [''],
-      nonvegSnacksCount: [''],
-      vegLunchCount: [''],
-      nonvegLunchCount: [''],
-      vegDinnerCount: [''],
-      nonvegDinnerCount: [''],
-      giftCount: ['', Validators.required],
-      guestCount: ['', Validators.required],
-      guestTravelMode: [''],
-      guestStayPeriod: [''],
-      emailCount: ['', Validators.required],
-      socialMediaMessageCount: ['', Validators.required]
+    if (!this.isPreview) {
+      this.form = this.formBuilder.group({
+        clubName: ['', Validators.required],
+        email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$')]],
+        mobileNo: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
+        dateOfMeet: ['', Validators.required],
+        memberCount: ['', Validators.required],
+        fourWCount: ['', Validators.required],
+        twoWCount: ['', Validators.required],
+        duration: ['', Validators.required],
+        lightsCount: ['', Validators.required],
+        fansCount: ['', Validators.required],
+        audioCount: ['', Validators.required],
+        micCount: ['', Validators.required],
+        projectorCount: ['', Validators.required],
+        acCount: ['', Validators.required],
+        beverageCount: ['', Validators.required],
+        vegBreakfastCount: ['', Validators.required],
+        nonvegBreakfastCount: ['', Validators.required],
+        vegSnacksCount: ['', Validators.required],
+        nonvegSnacksCount: ['', Validators.required],
+        vegLunchCount: ['', Validators.required],
+        nonvegLunchCount: ['', Validators.required],
+        vegDinnerCount: ['', Validators.required],
+        nonvegDinnerCount: ['', Validators.required],
+        giftCount: ['', Validators.required],
+        guestCount: ['', Validators.required],
+        guestTravelMode: ['', Validators.required],
+        guestStayPeriod: ['', Validators.required],
+        emailCount: ['', Validators.required],
+        socialMediaMessageCount: ['', Validators.required]
+      }
+      );
+
+      this.setGuestValidations();
+
     }
-    );
+  }
 
-    this.setGuestValidations();
-
+  ngAfterViewInit() {
     const phoneInputField = document.querySelector("#phone");
     const phoneInput = (<any>window).intlTelInput(phoneInputField, {
       preferredCountries: ["in"],
@@ -64,16 +73,16 @@ export class PhysicalMeetComponent implements OnInit {
 
   get f() { return this.form.controls; }
 
-  setGuestValidations(){
+  setGuestValidations() {
     this.form.get('guestCount')?.valueChanges.subscribe(
-      count=>{
-        if(count > 0){
+      count => {
+        if (count > 0) {
           console.log("setting validators");
           this.form.get('guestTravelMode')?.setValidators([Validators.required]);
           this.form.get('guestStayPeriod')?.setValidators([Validators.required]);
           this.form.get('guestTravelMode')?.reset();
           this.form.get('guestStayPeriod')?.reset();
-        }else{
+        } else {
           console.log("resetting validators");
           this.form.get('guestTravelMode')?.setValidators(null);
           this.form.get('guestStayPeriod')?.setValidators(null);
@@ -84,14 +93,28 @@ export class PhysicalMeetComponent implements OnInit {
     );
   }
 
+  preview() {
+    this.isPreview = true;
+  }
 
   submit() {
     this.submitted = true;
-    if(!this.form.invalid){
+    if (!this.form.invalid) {
 
-      window.alert("Submitted Successfully");
+      this.openDialog();
+    }
+  }
+
+  openDialog(): void {
+    let dialogRef = this.dialog.open(ThanksDialogComponent, {
+      width: '30rem'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.submitted = false;
       this.exportAsXLSX();
-    }    
+      this.ngOnInit();
+    });
   }
 
 
