@@ -11,8 +11,8 @@
 
         <div class="inputField">
             <label class="label" for="mobileNo">Mobie Number<span class="required"> *</span></label>
-            <input name="phone" id="phone" type="tel" formControlName="mobileNo" maxlength="10" class="textbox mob" autocomplete="no"
-                placeholder="XXXXXXXXXX" />
+            <input name="phone" id="phone" type="tel" formControlName="mobileNo" maxlength="10" class="textbox mob"
+                autocomplete="no" placeholder="XXXXXXXXXX" />
         </div>
         <div *ngIf="submitted && f.mobileNo.errors" class="invalid-feedback">
             <div *ngIf="f.mobileNo.errors.required">Mobie Number is required</div>
@@ -38,7 +38,8 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="memberCount">NUMBER of MEMBERS Attended Meeting/ Event<span class="required"> *</span></label>
+            <label class="label" for="memberCount">NUMBER of MEMBERS Attended Meeting/ Event<span class="required">
+                    *</span></label>
             <input type="number" formControlName="memberCount" class="textbox" autocomplete="no" min="1" />
         </div>
         <div *ngIf="submitted && f.memberCount.errors" class="invalid-feedback">
@@ -63,14 +64,16 @@
 
         <div class="inputField">
             <label class="label" for="duration">DURATION of the Meeting/ Event<span class="required"> *</span></label>
-            <input type="number" formControlName="duration" placeholder=" in minutes" class="textbox" autocomplete="no" min="0" />
+            <input type="number" formControlName="duration" placeholder=" in minutes" class="textbox" autocomplete="no"
+                min="0" />
         </div>
         <div *ngIf="submitted && f.duration.errors" class="invalid-feedback">
             <div *ngIf="f.duration.errors.required">Duration is required</div>
         </div>
 
         <div class="inputField">
-            <label class="label" for="lightsCount">NUMBER of LIGHTS at the Meeting/ Event<span class="required"> *</span></label>
+            <label class="label" for="lightsCount">NUMBER of LIGHTS at the Meeting/ Event<span class="required">
+                    *</span></label>
             <input type="number" formControlName="lightsCount" class="textbox" autocomplete="no" min="0" />
         </div>
         <div *ngIf="submitted && f.lightsCount.errors" class="invalid-feedback">
@@ -78,7 +81,8 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="fansCount">NUMBER of FANS at the Meeting/ Event<span class="required"> *</span></label>
+            <label class="label" for="fansCount">NUMBER of FANS at the Meeting/ Event<span class="required">
+                    *</span></label>
             <input type="number" formControlName="fansCount" class="textbox" autocomplete="no" min="0" />
         </div>
         <div *ngIf="submitted && f.fansCount.errors" class="invalid-feedback">
@@ -86,7 +90,8 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="audioCount">NUMBER of PUBLIC AUDIO SYSTEM used<span class="required"> *</span></label>
+            <label class="label" for="audioCount">NUMBER of PUBLIC AUDIO SYSTEM used<span class="required">
+                    *</span></label>
             <input type="number" formControlName="audioCount" class="textbox" autocomplete="no" min="0" />
         </div>
         <div *ngIf="submitted && f.audioCount.errors" class="invalid-feedback">
@@ -94,7 +99,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="micCount">MICS used<span class="required"> *</span></label>
+            <label class="label" for="micCount">MICs used<span class="required"> *</span></label>
             <input type="number" formControlName="micCount" class="textbox" autocomplete="no" min="0" />
         </div>
         <div *ngIf="submitted && f.micCount.errors" class="invalid-feedback">
@@ -102,7 +107,8 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="projectorCount">NUMBER of OVER HEAD PROJECTORS used<span class="required"> *</span></label>
+            <label class="label" for="projectorCount">NUMBER of OVER HEAD PROJECTORS used<span class="required">
+                    *</span></label>
             <input type="number" formControlName="projectorCount" class="textbox" autocomplete="no" min="0" />
         </div>
         <div *ngIf="submitted && f.projectorCount.errors" class="invalid-feedback">
@@ -112,14 +118,15 @@
         <div class="inputField">
             <label class="label" for="acCount">NUMBER of AIR-CONDITIONERS used<span class="required"> *</span></label>
             <input type="number" formControlName="acCount" class="textbox" autocomplete="no" min="0" />
-            
+
         </div>
         <div *ngIf="submitted && f.acCount.errors" class="invalid-feedback">
             <div *ngIf="f.acCount.errors.required">AC Systems Used is required</div>
         </div>
 
         <div class="inputField">
-            <label class="label" for="beverageCount">NUMBER of TEA / COFFEE served<span class="required"> *</span></label>
+            <label class="label" for="beverageCount">NUMBER of TEA / COFFEE served<span class="required">
+                    *</span></label>
             <input type="number" formControlName="beverageCount" class="textbox" autocomplete="no" min="0" />
         </div>
         <div *ngIf="submitted && f.beverageCount.errors" class="invalid-feedback">
@@ -127,6 +134,81 @@
         </div>
 
         <div class="inputField">
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Fellowship Served<span class="required"> *</span>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="inputField checkboxAccordion">
+                        <div class="checkboxes">
+                            <span><input type="radio" value="true" formControlName="fellowshipServed"> Yes</span>
+                            <span><input type="radio" value="false" formControlName="fellowshipServed"> No</span>
+                        </div>
+                        <div *ngIf="submitted && f.fellowshipServed.value == ''" class="invalid-feedback">
+                            <div>Fellowship info is required</div>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+
+        <div class="inputField" *ngIf="f.fellowshipServed.value == 'true'">
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Fellowship details<span class="required"> *</span>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="inputField checkboxAccordion">
+                        <div>
+                            Please select the type(s) of Fellowship provided during the event/meet
+                        </div>
+                        <div class="checkboxes">
+                            <mat-checkbox [checked]="isBreakfast" (change)="setBreakfastValidations(); setCutleryValidations()"> Breakfast
+                            </mat-checkbox>
+                            <mat-checkbox [checked]="isSnack" (change)="setSnacksValidations(); setCutleryValidations()"> Snacks
+                            </mat-checkbox>
+                            <mat-checkbox [checked]="isLunch" (change)="setLunchValidations(); setCutleryValidations()"> Lunch
+                            </mat-checkbox>
+                            <mat-checkbox [checked]="isDinner" (change)="setDinnerValidations(); setCutleryValidations()"> Dinner
+                            </mat-checkbox>
+                        </div>
+                    </div>
+                    <div *ngIf="submitted && !checkFellowship()" class="invalid-feedback">
+                        <div>Fellowship type is required</div>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+
+        <div class="inputField" *ngIf="f.fellowshipServed.value == 'true'">
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Cutlery used<span class="required"> *</span>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="inputField checkboxAccordion">
+                        <mat-radio-group formControlName="cutleryType" class="checkboxes">
+                            <mat-radio-button value="Disposable"> Disposable</mat-radio-button>
+                            <mat-radio-button value="Reusable"> Reusable</mat-radio-button>
+                        </mat-radio-group>
+                        <div *ngIf="submitted && f.cutleryType.errors" class="invalid-feedback">
+                            <div *ngIf="f.cutleryType.errors.required">Cutlery type is required</div>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+
+        <div class="inputField" *ngIf="isBreakfast">
             <mat-accordion>
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
@@ -139,24 +221,24 @@
                         <label class="label" for="vegBreakfastCount">Veg<span class="required"> *</span></label>
                         <input type="number" formControlName="vegBreakfastCount" class="textbox" autocomplete="no"
                             min="0" />
-                            <div *ngIf="submitted && f.vegBreakfastCount.errors" class="invalid-feedback">
-                                <div *ngIf="f.vegBreakfastCount.errors.required">Breakfast Served is required</div>
-                            </div>
+                        <div *ngIf="submitted && f.vegBreakfastCount.errors" class="invalid-feedback">
+                            <div *ngIf="f.vegBreakfastCount.errors.required">Breakfast Served is required</div>
+                        </div>
                     </div>
 
                     <div class="inputField">
                         <label class="label" for="nonvegBreakfastCount">Non-Veg<span class="required"> *</span></label>
                         <input type="number" formControlName="nonvegBreakfastCount" class="textbox" autocomplete="no"
                             min="0" />
-                            <div *ngIf="submitted && f.nonvegBreakfastCount.errors" class="invalid-feedback">
-                                <div *ngIf="f.nonvegBreakfastCount.errors.required">Breakfast Served is required</div>
-                            </div>
+                        <div *ngIf="submitted && f.nonvegBreakfastCount.errors" class="invalid-feedback">
+                            <div *ngIf="f.nonvegBreakfastCount.errors.required">Breakfast Served is required</div>
+                        </div>
                     </div>
                 </mat-expansion-panel>
             </mat-accordion>
         </div>
 
-        <div class="inputField">
+        <div class="inputField" *ngIf="isSnack">
             <mat-accordion>
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
@@ -186,7 +268,7 @@
             </mat-accordion>
         </div>
 
-        <div class="inputField">
+        <div class="inputField" *ngIf="isLunch">
             <mat-accordion>
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
@@ -216,7 +298,7 @@
             </mat-accordion>
         </div>
 
-        <div class="inputField">
+        <div class="inputField" *ngIf="isDinner">
             <mat-accordion>
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
@@ -263,7 +345,8 @@
         </div>
 
         <div class="inputField" *ngIf="f.guestCount.value > 0">
-            <label class="label" for="guestTravelMode">Mode of TRAVEL of the GUESTS<span class="required"> *</span></label>
+            <label class="label" for="guestTravelMode">Mode of TRAVEL of the GUESTS<span class="required">
+                    *</span></label>
             <select formControlName="guestTravelMode" class="textbox mob">
                 <option value="" disabled>Choose a Mode</option>
                 <option ngValue="road">Road</option>
@@ -277,7 +360,8 @@
         </div>
 
         <div class="inputField" *ngIf="f.guestCount.value > 0">
-            <label class="label" for="guestStayPeriod">NUMBER of DAYS Guest stayed at Hotel<span class="required"> *</span></label>
+            <label class="label" for="guestStayPeriod">NUMBER of DAYS Guest stayed at Hotel<span class="required">
+                    *</span></label>
             <input type="number" formControlName="guestStayPeriod" class="textbox" autocomplete="no" min="0" />
         </div>
         <div *ngIf="submitted && f.guestStayPeriod.errors" class="invalid-feedback">
@@ -285,7 +369,8 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="emailCount">NUMBER of EMAIL communication(s) sent<span class="required"> *</span></label>
+            <label class="label" for="emailCount">NUMBER of EMAIL communication(s) sent<span class="required">
+                    *</span></label>
             <input type="number" formControlName="emailCount" class="textbox" autocomplete="no" min="0" />
         </div>
         <div *ngIf="submitted && f.emailCount.errors" class="invalid-feedback">
@@ -293,7 +378,8 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="socialMediaMessageCount">NUMBER of WHATSAPP/ FACEBOOK communication(s) sent<span class="required"> *</span></label>
+            <label class="label" for="socialMediaMessageCount">NUMBER of WHATSAPP/ FACEBOOK communication(s) sent<span
+                    class="required"> *</span></label>
             <input type="number" formControlName="socialMediaMessageCount" class="textbox" autocomplete="no" min="0" />
         </div>
         <div *ngIf="submitted && f.socialMediaMessageCount.errors" class="invalid-feedback">
@@ -315,9 +401,9 @@
     <div class="inputsContainer">
         <div class="inputField">
             <label class="label" for="clubName">Rotary Club of</label>
-            <span type="text" formControlName="clubName" class="previewText" >{{f.clubName.value}}</span>
+            <span type="text" formControlName="clubName" class="previewText">{{f.clubName.value}}</span>
         </div>
-        
+
         <div class="inputField">
             <label class="label" for="mobileNo">Mobie Number</label>
             <span class="previewText">{{f.mobileNo.value}}</span>
@@ -325,7 +411,7 @@
 
         <div class="inputField">
             <label class="label" for="email">Email</label>
-            <span class="previewText" >{{f.email.value}}</span>
+            <span class="previewText">{{f.email.value}}</span>
         </div>
 
         <div class="inputField">
@@ -502,7 +588,8 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="socialMediaMessageCount">NUMBER of WHATSAPP/ FACEBOOK communication(s) sent</label>
+            <label class="label" for="socialMediaMessageCount">NUMBER of WHATSAPP/ FACEBOOK communication(s)
+                sent</label>
             <span class="previewText">{{f.socialMediaMessageCount.value}}</span>
         </div>
     </div>

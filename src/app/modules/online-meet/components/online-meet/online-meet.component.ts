@@ -53,7 +53,6 @@ export class OnlineMeetComponent implements OnInit {
   submit() {
     this.submitted = true;
     if (!this.form.invalid) {
-
       this.openDialog();
     }
   }

@@ -45,6 +45,17 @@
                 width: 12.8rem;
             }
         }
+
+        .checkboxAccordion{
+            display: block;
+
+            .checkboxes{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+                margin: 1rem;
+            }
+        }
     }
 
     .required {

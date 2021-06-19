@@ -7,8 +7,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ThanksDialogComponent } from './components/thanks-dialog/thanks-dialog.component';
 
-import { MatDialogModule } from '@angular/material/dialog'
-
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { MatDialogModule } from '@angular/material/dialog'
     FormsModule,
     ReactiveFormsModule,
     MatExpansionModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule,
+    MatRadioModule
   ]
 })
 export class PhysicalMeetModule { }

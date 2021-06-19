@@ -16,6 +16,12 @@ export class PhysicalMeetComponent implements OnInit {
   public form: FormGroup;
   public submitted: boolean = false;
   public isPreview: boolean = false;
+
+  public isBreakfast: boolean = false;
+  public isLunch: boolean = false;
+  public isSnack: boolean = false;
+  public isDinner: boolean = false;
+
   public todaysdate: Date = new Date();
 
   fileName = 'CFC_Input_Physical';
@@ -40,6 +46,8 @@ export class PhysicalMeetComponent implements OnInit {
         projectorCount: ['', Validators.required],
         acCount: ['', Validators.required],
         beverageCount: ['', Validators.required],
+        fellowshipServed: ['', Validators.required],
+        cutleryType: ['', Validators.required],
         vegBreakfastCount: ['', Validators.required],
         nonvegBreakfastCount: ['', Validators.required],
         vegSnacksCount: ['', Validators.required],
@@ -58,7 +66,8 @@ export class PhysicalMeetComponent implements OnInit {
       );
 
       this.setGuestValidations();
-
+      this.setFellowshipValidations();
+      this.setCutleryValidations();
     }
   }
 
@@ -93,14 +102,115 @@ export class PhysicalMeetComponent implements OnInit {
     );
   }
 
+  setFellowshipValidations() {
+    this.form.get('fellowshipServed')?.valueChanges.subscribe(
+      value => {
+        if (value == 'true') {
+          this.isBreakfast = this.isDinner = this.isLunch = this.isSnack = true;
+          this.setBreakfastValidations();
+          this.setLunchValidations();
+          this.setSnacksValidations();
+          this.setDinnerValidations();
+        } else if (value == 'false') {
+          this.isBreakfast = this.isDinner = this.isLunch = this.isSnack = true;
+          this.setBreakfastValidations();
+          this.setLunchValidations();
+          this.setSnacksValidations();
+          this.setDinnerValidations();
+        }
+      }
+    );
+  }
+
+  setBreakfastValidations() {
+    this.isBreakfast = !this.isBreakfast;
+    if (this.isBreakfast) {
+      this.form.get('vegBreakfastCount')?.setValidators([Validators.required]);
+      this.form.get('nonvegBreakfastCount')?.setValidators([Validators.required]);
+      this.form.get('vegBreakfastCount')?.reset();
+      this.form.get('nonvegBreakfastCount')?.reset();
+    } else {
+      this.form.get('vegBreakfastCount')?.setValidators(null);
+      this.form.get('nonvegBreakfastCount')?.setValidators(null);
+      this.form.get('vegBreakfastCount')?.setValue(0);
+      this.form.get('nonvegBreakfastCount')?.setValue(0);
+    }
+  }
+
+  setLunchValidations() {
+    this.isLunch = !this.isLunch;
+    if (this.isLunch) {
+      this.form.get('vegLunchCount')?.setValidators([Validators.required]);
+      this.form.get('nonvegLunchCount')?.setValidators([Validators.required]);
+      this.form.get('vegLunchCount')?.reset();
+      this.form.get('nonvegLunchCount')?.reset();
+    } else {
+      this.form.get('vegLunchCount')?.setValidators(null);
+      this.form.get('nonvegLunchCount')?.setValidators(null);
+      this.form.get('vegLunchCount')?.setValue(0);
+      this.form.get('nonvegLunchCount')?.setValue(0);
+    }
+  }
+
+  setSnacksValidations() {
+    this.isSnack = !this.isSnack;
+    if (this.isSnack) {
+      this.form.get('vegSnacksCount')?.setValidators([Validators.required]);
+      this.form.get('nonvegSnacksCount')?.setValidators([Validators.required]);
+      this.form.get('vegSnacksCount')?.reset();
+      this.form.get('nonvegSnacksCount')?.reset();
+    } else {
+      this.form.get('vegSnacksCount')?.setValidators(null);
+      this.form.get('nonvegSnacksCount')?.setValidators(null);
+      this.form.get('vegSnacksCount')?.setValue(0);
+      this.form.get('nonvegSnacksCount')?.setValue(0);
+    }
+  }
+
+  setDinnerValidations() {
+    this.isDinner = !this.isDinner;
+    if (this.isDinner) {
+      this.form.get('vegDinnerCount')?.setValidators([Validators.required]);
+      this.form.get('nonvegDinnerCount')?.setValidators([Validators.required]);
+      this.form.get('vegDinnerCount')?.reset();
+      this.form.get('nonvegDinnerCount')?.reset();
+    } else {
+      this.form.get('vegDinnerCount')?.setValidators(null);
+      this.form.get('nonvegDinnerCount')?.setValidators(null);
+      this.form.get('vegDinnerCount')?.setValue(0);
+      this.form.get('nonvegDinnerCount')?.setValue(0);
+    }
+  }
+
+  setCutleryValidations() {
+    if (this.isBreakfast || this.isSnack || this.isLunch || this.isDinner) {
+      this.form.get('cutleryType')?.setValidators([Validators.required]);
+      this.form.get('cutleryType')?.reset();
+    } else {
+      this.form.get('cutleryType')?.setValidators(null);
+      this.form.get('guestTravelMode')?.setValue("");
+    }
+  }
+
+  checkFellowship(): boolean {
+    if (this.form.value.fellowshipServed == 'true') {
+      if (this.isBreakfast || this.isDinner || this.isLunch || this.isSnack) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  }
+
   preview() {
     this.isPreview = true;
   }
 
   submit() {
     this.submitted = true;
-    if (!this.form.invalid) {
-
+    if (!this.form.invalid && this.checkFellowship()) {
       this.openDialog();
     }
   }
@@ -113,6 +223,7 @@ export class PhysicalMeetComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.submitted = false;
       this.exportAsXLSX();
+      this.isBreakfast = this.isDinner = this.isLunch = this.isSnack = true;
       this.ngOnInit();
     });
   }
