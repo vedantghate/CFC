@@ -10,12 +10,12 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="mobileNo">Mobie Number<span class="required"> *</span></label>
+            <label class="label" for="mobileNo">Mobile Number<span class="required"> *</span></label>
             <input name="phone" id="phone" type="tel" formControlName="mobileNo" maxlength="10" class="textbox mob"
                 autocomplete="no" placeholder="XXXXXXXXXX" />
         </div>
         <div *ngIf="submitted && f.mobileNo.errors" class="invalid-feedback">
-            <div *ngIf="f.mobileNo.errors.required">Mobie Number is required</div>
+            <div *ngIf="f.mobileNo.errors.required">Mobile Number is required</div>
             <div *ngIf="f.mobileNo.errors.pattern">Incorrect mobile number</div>
         </div>
 
@@ -162,6 +162,9 @@
                         <mat-panel-title>
                             Fellowship details<span class="required"> *</span>
                         </mat-panel-title>
+                        <mat-panel-description *ngIf="submitted && !checkFellowship()">
+                            Fellowship type is required
+                        </mat-panel-description>
                     </mat-expansion-panel-header>
 
                     <div class="inputField checkboxAccordion">
@@ -169,13 +172,17 @@
                             Please select the type(s) of Fellowship provided during the event/meet
                         </div>
                         <div class="checkboxes">
-                            <mat-checkbox [checked]="isBreakfast" (change)="setBreakfastValidations(); setCutleryValidations()"> Breakfast
+                            <mat-checkbox [checked]="isBreakfast"
+                                (change)="setBreakfastValidations(); setCutleryValidations()"> Breakfast
                             </mat-checkbox>
-                            <mat-checkbox [checked]="isSnack" (change)="setSnacksValidations(); setCutleryValidations()"> Snacks
+                            <mat-checkbox [checked]="isSnack"
+                                (change)="setSnacksValidations(); setCutleryValidations()"> Snacks
                             </mat-checkbox>
-                            <mat-checkbox [checked]="isLunch" (change)="setLunchValidations(); setCutleryValidations()"> Lunch
+                            <mat-checkbox [checked]="isLunch" (change)="setLunchValidations(); setCutleryValidations()">
+                                Lunch
                             </mat-checkbox>
-                            <mat-checkbox [checked]="isDinner" (change)="setDinnerValidations(); setCutleryValidations()"> Dinner
+                            <mat-checkbox [checked]="isDinner"
+                                (change)="setDinnerValidations(); setCutleryValidations()"> Dinner
                             </mat-checkbox>
                         </div>
                     </div>
@@ -191,8 +198,11 @@
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            Cutlery used<span class="required"> *</span>
+                            Crockery used<span class="required"> *</span>
                         </mat-panel-title>
+                        <mat-panel-description *ngIf="submitted && f.cutleryType.errors && f.cutleryType.errors.required">
+                            Crockery type is required
+                        </mat-panel-description>
                     </mat-expansion-panel-header>
 
                     <div class="inputField checkboxAccordion">
@@ -201,7 +211,7 @@
                             <mat-radio-button value="Reusable"> Reusable</mat-radio-button>
                         </mat-radio-group>
                         <div *ngIf="submitted && f.cutleryType.errors" class="invalid-feedback">
-                            <div *ngIf="f.cutleryType.errors.required">Cutlery type is required</div>
+                            <div *ngIf="f.cutleryType.errors.required">Crockery type is required</div>
                         </div>
                     </div>
                 </mat-expansion-panel>
@@ -215,6 +225,9 @@
                         <mat-panel-title>
                             NUMBER of BREAKFASTS served<span class="required"> *</span>
                         </mat-panel-title>
+                        <mat-panel-description *ngIf="submitted && ((f.vegBreakfastCount.errors && f.vegBreakfastCount.errors.required) || (f.nonvegBreakfastCount.errors && f.nonvegBreakfastCount.errors.required))">
+                            Breakfast Served is required
+                        </mat-panel-description>
                     </mat-expansion-panel-header>
 
                     <div class="inputField">
@@ -245,6 +258,9 @@
                         <mat-panel-title>
                             NUMBER of SNACKS served<span class="required"> *</span>
                         </mat-panel-title>
+                        <mat-panel-description *ngIf="submitted && ((f.vegSnacksCount.errors && f.vegSnacksCount.errors.required) || (f.nonvegSnacksCount.errors && f.nonvegSnacksCount.errors.required))">
+                            Snacks Served is required
+                        </mat-panel-description>
                     </mat-expansion-panel-header>
 
                     <div class="inputField">
@@ -275,6 +291,9 @@
                         <mat-panel-title>
                             NUMBER of LUNCHES served<span class="required"> *</span>
                         </mat-panel-title>
+                        <mat-panel-description *ngIf="submitted && ((f.vegLunchCount.errors && f.vegLunchCount.errors.required) || (f.nonvegLunchCount.errors && f.nonvegLunchCount.errors.required))">
+                            Lunch Served is required
+                        </mat-panel-description>
                     </mat-expansion-panel-header>
 
                     <div class="inputField">
@@ -305,6 +324,9 @@
                         <mat-panel-title>
                             NUMBER of DINNERS served<span class="required"> *</span>
                         </mat-panel-title>
+                        <mat-panel-description *ngIf="submitted && ((f.vegDinnerCount.errors && f.vegDinnerCount.errors.required) || (f.nonvegDinnerCount.errors && f.nonvegDinnerCount.errors.required))">
+                            Dinner Served is required
+                        </mat-panel-description>
                     </mat-expansion-panel-header>
 
                     <div class="inputField">
@@ -405,7 +427,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="mobileNo">Mobie Number</label>
+            <label class="label" for="mobileNo">Mobile Number</label>
             <span class="previewText">{{f.mobileNo.value}}</span>
         </div>
 

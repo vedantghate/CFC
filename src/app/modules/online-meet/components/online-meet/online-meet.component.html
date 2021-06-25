@@ -10,12 +10,12 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="mobileNo">Mobie Number<span class="required"> *</span></label><br />
+            <label class="label" for="mobileNo">Mobile Number<span class="required"> *</span></label><br />
             <input id="phone" type="tel" formControlName="mobileNo" maxlength="10" class="textbox mob" autocomplete="no"
                 placeholder="XXXXXXXXXX" />
         </div>
         <div *ngIf="submitted && f.mobileNo.errors" class="invalid-feedback">
-            <div *ngIf="f.mobileNo.errors.required">Mobie Number is required</div>
+            <div *ngIf="f.mobileNo.errors.required">Mobile Number is required</div>
             <div *ngIf="f.mobileNo.errors.pattern">Incorrect mobile number</div>
         </div>
 
@@ -94,7 +94,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label">Mobie Number</label>
+            <label class="label">Mobile Number</label>
             <span id="phone" class="previewText">{{f.mobileNo.value}}</span>
         </div>
 
