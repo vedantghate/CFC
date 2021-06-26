@@ -132,16 +132,35 @@ input:focus {
     font-weight: 600;
 }
 
-@media (max-width: 600px) {
-    .formPage .inputsContainer {
-        display: flex;
-        background-color: #fff;
-        padding: 0rem;
-        flex-wrap: wrap;
-        margin: 0rem;
+@media print {
+    .formPage {
+        padding-left: 5%;
+        padding-right: 5%;
 
-        .inputField {
-            display: block;
+        .inputsContainer {
+            background-color: #fff;
+            padding: 0rem;
+            margin: 0rem;
+
+            .inputField {
+                margin: 0.5rem;
+            }
+        }
+    }
+}
+
+@media not print {
+    @media (max-width: 600px) {
+        .formPage .inputsContainer {
+            display: flex;
+            background-color: #fff;
+            padding: 0rem;
+            flex-wrap: wrap;
+            margin: 0rem;
+
+            .inputField {
+                display: block;
+            }
         }
     }
 }

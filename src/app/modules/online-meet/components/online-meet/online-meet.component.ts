@@ -2,8 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import * as XLSX from 'xlsx';
+import { DatePipe } from '@angular/common';
 
 import { ThanksDialogComponent } from '../thanks-dialog/thanks-dialog.component';
+
+interface columnMapping {
+  [key: string] : string;
+}
+
 
 @Component({
   selector: 'app-online-meet',
@@ -15,10 +21,21 @@ export class OnlineMeetComponent implements OnInit {
   public submitted: boolean = false;
   public isPreview: boolean = false;
   public todaysdate: Date = new Date();
-  constructor(private formBuilder: FormBuilder, public dialog: MatDialog) { }
+  constructor(private formBuilder: FormBuilder, public dialog: MatDialog, public datepipe: DatePipe) { }
 
   fileName = 'CFC_Input_Online';
 
+  public columnMapping : columnMapping = {
+    clubName: "Rotary Club of ",
+    email: "Email ",
+    mobileNo: "Mobile No. ",
+    dateOfMeet: "Date ",
+    duration: "Duration(in minutes) ",
+    memberCount: "No. of Members ",
+    emailCount: "No. of Emails sent ",
+    socialMediaMessageCount: "No. of Social Media Messages sent "
+  }
+  
   ngOnInit(): void {
     if (!this.isPreview) {
       this.form = this.formBuilder.group({
@@ -71,10 +88,22 @@ export class OnlineMeetComponent implements OnInit {
 
 
   public exportAsXLSX(): void {
-    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet([this.form.value]);
+    let sheetDataArr = [];
+    for (let key in this.form.value) {
+      let fields = {
+        "Field": this.columnMapping[key],
+        "Value Entered": this.form.value[key],
+        "": ""
+      }
+      sheetDataArr.push(fields);
+    }
+
+    sheetDataArr.push({"Carbon Footprint Value" : 0})
+
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(sheetDataArr);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-    const excellFile = `${this.fileName}_${new Date().getTime()}.xlsx`;
+    const excellFile = `${this.fileName}_Rotary Club of ${this.form.value.clubName}_${this.datepipe.transform(new Date(), 'dd-MM-yyyy')}.xlsx`;
     XLSX.writeFile(wb, excellFile);
   }
 

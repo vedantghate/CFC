@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import * as XLSX from 'xlsx';
+import { DatePipe } from '@angular/common';
 import { ThanksDialogComponent } from '../thanks-dialog/thanks-dialog.component';
 
-
+interface columnMapping {
+  [key: string] : string;
+}
 
 @Component({
   selector: 'app-physical-meet',
@@ -26,7 +29,41 @@ export class PhysicalMeetComponent implements OnInit {
 
   fileName = 'CFC_Input_Physical';
 
-  constructor(private formBuilder: FormBuilder, public dialog: MatDialog) { }
+  public columnMapping : columnMapping = {
+    clubName: "Rotary Club of ",
+    email: "Email ",
+    mobileNo: "Mobile No. ",
+    dateOfMeet: "Date ",
+    memberCount: "No. of Members ",
+    fourWCount: "No. of Four Wheeler(s) ",
+    twoWCount: "No. of Two Wheeler(s) ",
+    duration: "Duration(in minutes) ",
+    lightsCount: "No. of Light(s) used ",
+    fansCount: "No. of Fan(s) used ",
+    audioCount: "No. of Audio System(s) used ",
+    micCount: "No. of Mic(s) used ",
+    projectorCount: "No. of Projector(s) used ",
+    acCount: "No. of Air Conditioner(s) used ",
+    beverageCount: "No. of Beverage(s) served ",
+    fellowshipServed: "Fellowship served ",
+    cutleryType: "Type of Crockery used ",
+    vegBreakfastCount: "No. of Veg Brekfast served ",
+    nonvegBreakfastCount: "No. of Non-Veg Brekfast served ",
+    vegSnacksCount: "No. of Veg Snacks served ",
+    nonvegSnacksCount: "No. of Non-Veg Snacks served ",
+    vegLunchCount: "No. of Veg Lunch served ",
+    nonvegLunchCount: "No. of Non Veg Lunch served ",
+    vegDinnerCount: "No. of Veg Dinner served ",
+    nonvegDinnerCount: "No. of Non Veg Dinner served ",
+    giftCount: "No. of Gift(s) provided ",
+    guestCount: "No. of Guest(s) invited ",
+    guestTravelMode: "Guest's travel mode ",
+    guestStayPeriod: "Guest's stay period ",
+    emailCount: "No. of Emails sent ",
+    socialMediaMessageCount: "No. of Social Media messages sent "
+  }
+
+  constructor(private formBuilder: FormBuilder, public dialog: MatDialog, public datepipe: DatePipe) { }
 
   ngOnInit(): void {
     if (!this.isPreview) {
@@ -230,10 +267,22 @@ export class PhysicalMeetComponent implements OnInit {
 
 
   public exportAsXLSX(): void {
-    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet([this.form.value]);
+    let sheetDataArr = [];
+    for (let key in this.form.value) {
+      let fields = {
+        "Field": this.columnMapping[key],
+        "Value Entered": this.form.value[key],
+        "": ""
+      }
+      sheetDataArr.push(fields);
+    }
+
+    sheetDataArr.push({"Carbon Footprint Value" : 0})
+
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(sheetDataArr);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-    const excellFile = `${this.fileName}_${new Date().getTime()}.xlsx`;
+    const excellFile = `${this.fileName}_Rotary Club of ${this.form.value.clubName}_${this.datepipe.transform(new Date(), 'dd-MM-yyyy')}.xlsx`;
     XLSX.writeFile(wb, excellFile);
   }
 
