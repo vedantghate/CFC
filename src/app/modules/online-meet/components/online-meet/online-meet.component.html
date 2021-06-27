@@ -1,6 +1,7 @@
 <form [formGroup]="form" class="formPage">
 
     <div class="inputsContainer">
+        <h2>Online Meet/Event Details</h2>
         <div class="inputField">
             <label class="label" for="clubName">Rotary Club of<span class="required"> *</span></label><br />
             <input type="text" formControlName="clubName" class="textbox" autocomplete="no" />
@@ -29,7 +30,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="dateOfMeet">DATE of the Meeting/ Event<span class="required">
+            <label class="label" for="dateOfMeet">Date of the Meeting/Event<span class="required">
                     *</span></label><br />
             <input type="date" formControlName="dateOfMeet" class="textbox mob" autocomplete="no"
                 max="{{todaysdate|date:'yyyy-MM-dd'}}" />
@@ -40,7 +41,7 @@
 
 
         <div class="inputField">
-            <label class="label" for="memberCount">NUMBER of MEMBERS Attended the Meeting/ Event<span class="required">
+            <label class="label" for="memberCount">Number of Members Attended the Meeting/Event<span class="required">
                     *</span></label><br />
             <input type="number" formControlName="memberCount" class="textbox" autocomplete="no" min="1" />
         </div>
@@ -49,7 +50,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="duration">DURATION of the Meeting/ Event<span class="required">
+            <label class="label" for="duration">Duration of the Meeting/Event<span class="required">
                     *</span></label><br />
             <input type="number" formControlName="duration" placeholder=" in minutes" class="textbox" autocomplete="no"
                 min="0" />
@@ -59,7 +60,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="emailCount">NUMBER of EMAIL Communication(s) sent<span class="required"> *</span></label><br />
+            <label class="label" for="emailCount">Number of Email Communication(s) sent<span class="required"> *</span></label><br />
             <input type="number" formControlName="emailCount" class="textbox" autocomplete="no" min="0" />
         </div>
         <div *ngIf="submitted && f.emailCount.errors" class="invalid-feedback">
@@ -67,7 +68,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="socialMediaMessageCount">NUMBER of WHATSAPP/ FACEBOOK Communication(s)
+            <label class="label" for="socialMediaMessageCount">Number of WhatsApp/Facebook Communication(s)
                 sent<span class="required"> *</span></label><br />
             <input type="number" formControlName="socialMediaMessageCount" class="textbox" autocomplete="no" min="0" />
         </div>
@@ -104,27 +105,27 @@
         </div>
 
         <div class="inputField">
-            <label class="label">DATE of the Meeting/ Event</label>
+            <label class="label">Date of the Meeting/ Event</label>
             <span type="date" class="previewText">{{f.dateOfMeet.value}}</span>
         </div>
 
         <div class="inputField">
-            <label class="label">NUMBER of MEMBERS Attended the Meeting/ Event</label>
+            <label class="label">Number of Members Attended the Meeting/ Event</label>
             <span type="number" class="previewText">{{f.memberCount.value}}</span>
         </div>
 
         <div class="inputField">
-            <label class="label">DURATION of the Meeting/ Event</label>
+            <label class="label">Duration of the Meeting/ Event</label>
             <span type="number" class="previewText">{{f.duration.value}} minutes</span>
         </div>
 
         <div class="inputField">
-            <label class="label">NUMBER of EMAIL Communication(s) sent</label>
+            <label class="label">Number of Email Communication(s) sent</label>
             <span type="number" class="previewText">{{f.emailCount.value}}</span>
         </div>
 
         <div class="inputField">
-            <label class="label" for="socialMediaMessageCount">NUMBER of WHATSAPP/ FACEBOOK Communication(s)
+            <label class="label" for="socialMediaMessageCount">Number of WhatsApp/Facebook Communication(s)
                 sent</label>
             <span type="number" class="previewText">{{f.socialMediaMessageCount.value}}</span>
         </div>

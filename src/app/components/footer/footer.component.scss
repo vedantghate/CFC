@@ -1,7 +1,71 @@
-.footer{
+.footer {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
-    background-color: lightblue;
+    background-color: rgb(56, 57, 58);
+    color: white;
     padding: 1rem;
     font-size: 1rem;
+
+    .noTitle {
+        margin-top: 2.5rem;
+    }
+
+    .name {
+        font-size: 1rem;
+    }
+
+    .contact {
+        font-size: 0.8rem;
+    }
+
+    .club {
+        font-size: 0.8rem;
+    }
+
+    a {
+        font-size: 0.8rem;
+        color: white;
+    }
+
+    img {
+        height: 5rem;
+        width: 15rem;
+        margin: 0.5rem;
+        object-fit: contain;
+    }
+
+    .logo{
+        border-left: solid 1px rgb(72, 74, 82);
+        padding: 1rem 0rem 0rem 2rem;
+
+        .copy{
+            font-size: 0.8rem;
+        }
+
+        .disclaimer{
+            font-size: 0.75rem;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .footer{
+        text-align: left;
+        justify-content: left;
+    }
+
+    .footer .noTitle{
+        margin-top: 1rem;
+    }
+
+    h4{
+        margin-top: 1.5rem;
+    }
+
+    .footer .logo{
+        margin-top: 3rem;
+        border-left: none;
+        padding: 0rem;
+    }
 }

@@ -1,6 +1,8 @@
 <form [formGroup]="form" class="formPage">
 
     <div class="inputsContainer">
+        <h2>Physical Meet/Event Details</h2>
+
         <div class="inputField">
             <label class="label" for="clubName">Rotary Club of<span class="required"> *</span></label>
             <input type="text" formControlName="clubName" class="textbox" autocomplete="no" />
@@ -29,7 +31,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="dateOfMeet">DATE of the Meeting/ Event<span class="required"> *</span></label>
+            <label class="label" for="dateOfMeet">Date of the Meeting/Event<span class="required"> *</span></label>
             <input type="date" formControlName="dateOfMeet" class="textbox mob" autocomplete="no"
                 max="{{todaysdate|date:'yyyy-MM-dd'}}" />
         </div>
@@ -38,7 +40,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="memberCount">NUMBER of MEMBERS Attended Meeting/ Event<span class="required">
+            <label class="label" for="memberCount">Number of Member(s) Attended Meeting/Event<span class="required">
                     *</span></label>
             <input type="number" formControlName="memberCount" class="textbox" autocomplete="no" min="1" />
         </div>
@@ -47,7 +49,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="fourWCount">NUMBER of 4-WHEELERS commuted<span class="required"> *</span></label>
+            <label class="label" for="fourWCount">Number of 4-Wheelers commuted<span class="required"> *</span></label>
             <input type="number" formControlName="fourWCount" class="textbox" autocomplete="no" min="0" />
         </div>
         <div *ngIf="submitted && f.fourWCount.errors" class="invalid-feedback">
@@ -55,7 +57,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="twoWCount">NUMBER of 2-WHEELERS commuted<span class="required"> *</span></label>
+            <label class="label" for="twoWCount">Number of 2-Wheelers commuted<span class="required"> *</span></label>
             <input type="number" formControlName="twoWCount" class="textbox" autocomplete="no" min="0" />
         </div>
         <div *ngIf="submitted && f.twoWCount.errors" class="invalid-feedback">
@@ -63,7 +65,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="duration">DURATION of the Meeting/ Event<span class="required"> *</span></label>
+            <label class="label" for="duration">Duration of the Meeting/Event<span class="required"> *</span></label>
             <input type="number" formControlName="duration" placeholder=" in minutes" class="textbox" autocomplete="no"
                 min="0" />
         </div>
@@ -72,7 +74,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="lightsCount">NUMBER of LIGHTS at the Meeting/ Event<span class="required">
+            <label class="label" for="lightsCount">Number of Light(s) at the Meeting/Event<span class="required">
                     *</span></label>
             <input type="number" formControlName="lightsCount" class="textbox" autocomplete="no" min="0" />
         </div>
@@ -81,7 +83,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="fansCount">NUMBER of FANS at the Meeting/ Event<span class="required">
+            <label class="label" for="fansCount">Number of Fan(s) at the Meeting/Event<span class="required">
                     *</span></label>
             <input type="number" formControlName="fansCount" class="textbox" autocomplete="no" min="0" />
         </div>
@@ -90,7 +92,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="audioCount">NUMBER of PUBLIC AUDIO SYSTEM used<span class="required">
+            <label class="label" for="audioCount">Number of Public Audio System(s) used<span class="required">
                     *</span></label>
             <input type="number" formControlName="audioCount" class="textbox" autocomplete="no" min="0" />
         </div>
@@ -99,7 +101,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="micCount">MICs used<span class="required"> *</span></label>
+            <label class="label" for="micCount">Mic(s) used<span class="required"> *</span></label>
             <input type="number" formControlName="micCount" class="textbox" autocomplete="no" min="0" />
         </div>
         <div *ngIf="submitted && f.micCount.errors" class="invalid-feedback">
@@ -107,7 +109,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="projectorCount">NUMBER of OVER HEAD PROJECTORS used<span class="required">
+            <label class="label" for="projectorCount">Number of Over Head Projector(s) used<span class="required">
                     *</span></label>
             <input type="number" formControlName="projectorCount" class="textbox" autocomplete="no" min="0" />
         </div>
@@ -116,7 +118,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="acCount">NUMBER of AIR-CONDITIONERS used<span class="required"> *</span></label>
+            <label class="label" for="acCount">Number of Air-Conditioner(s) used<span class="required"> *</span></label>
             <input type="number" formControlName="acCount" class="textbox" autocomplete="no" min="0" />
 
         </div>
@@ -125,7 +127,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="beverageCount">NUMBER of TEA / COFFEE served<span class="required">
+            <label class="label" for="beverageCount">Number of Tea/Coffee served<span class="required">
                     *</span></label>
             <input type="number" formControlName="beverageCount" class="textbox" autocomplete="no" min="0" />
         </div>
@@ -223,7 +225,7 @@
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            NUMBER of BREAKFASTS served<span class="required"> *</span>
+                            Number of Breakfast(s) served<span class="required"> *</span>
                         </mat-panel-title>
                         <mat-panel-description *ngIf="submitted && ((f.vegBreakfastCount.errors && f.vegBreakfastCount.errors.required) || (f.nonvegBreakfastCount.errors && f.nonvegBreakfastCount.errors.required))">
                             Breakfast Served is required
@@ -256,7 +258,7 @@
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            NUMBER of SNACKS served<span class="required"> *</span>
+                            Number of Snack(s) served<span class="required"> *</span>
                         </mat-panel-title>
                         <mat-panel-description *ngIf="submitted && ((f.vegSnacksCount.errors && f.vegSnacksCount.errors.required) || (f.nonvegSnacksCount.errors && f.nonvegSnacksCount.errors.required))">
                             Snacks Served is required
@@ -289,7 +291,7 @@
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            NUMBER of LUNCHES served<span class="required"> *</span>
+                            Number of Lunch(s) served<span class="required"> *</span>
                         </mat-panel-title>
                         <mat-panel-description *ngIf="submitted && ((f.vegLunchCount.errors && f.vegLunchCount.errors.required) || (f.nonvegLunchCount.errors && f.nonvegLunchCount.errors.required))">
                             Lunch Served is required
@@ -322,7 +324,7 @@
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            NUMBER of DINNERS served<span class="required"> *</span>
+                            Number of Dinner(s) served<span class="required"> *</span>
                         </mat-panel-title>
                         <mat-panel-description *ngIf="submitted && ((f.vegDinnerCount.errors && f.vegDinnerCount.errors.required) || (f.nonvegDinnerCount.errors && f.nonvegDinnerCount.errors.required))">
                             Dinner Served is required
@@ -351,7 +353,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="giftCount">NUMBER of GIFTS provided<span class="required"> *</span></label>
+            <label class="label" for="giftCount">Number of Gift(s) provided<span class="required"> *</span></label>
             <input type="number" formControlName="giftCount" class="textbox" autocomplete="no" min="0" />
         </div>
         <div *ngIf="submitted && f.giftCount.errors" class="invalid-feedback">
@@ -359,7 +361,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="guestCount">NUMBER of GUESTS invited<span class="required"> *</span></label>
+            <label class="label" for="guestCount">Number of Guest(s) invited<span class="required"> *</span></label>
             <input type="number" formControlName="guestCount" class="textbox" autocomplete="no" min="0" />
         </div>
         <div *ngIf="submitted && f.guestCount.errors" class="invalid-feedback">
@@ -367,7 +369,7 @@
         </div>
 
         <div class="inputField" *ngIf="f.guestCount.value > 0">
-            <label class="label" for="guestTravelMode">Mode of TRAVEL of the GUESTS<span class="required">
+            <label class="label" for="guestTravelMode">Mode of Travel of the Guest(s)<span class="required">
                     *</span></label>
             <select formControlName="guestTravelMode" class="textbox mob">
                 <option value="" disabled>Choose a Mode</option>
@@ -382,7 +384,7 @@
         </div>
 
         <div class="inputField" *ngIf="f.guestCount.value > 0">
-            <label class="label" for="guestStayPeriod">NUMBER of DAYS Guest stayed at Hotel<span class="required">
+            <label class="label" for="guestStayPeriod">Number of Day(s) Guest stayed at Hotel<span class="required">
                     *</span></label>
             <input type="number" formControlName="guestStayPeriod" class="textbox" autocomplete="no" min="0" />
         </div>
@@ -391,7 +393,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="emailCount">NUMBER of EMAIL communication(s) sent<span class="required">
+            <label class="label" for="emailCount">Number of Email communication(s) sent<span class="required">
                     *</span></label>
             <input type="number" formControlName="emailCount" class="textbox" autocomplete="no" min="0" />
         </div>
@@ -400,7 +402,7 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="socialMediaMessageCount">NUMBER of WHATSAPP/ FACEBOOK communication(s) sent<span
+            <label class="label" for="socialMediaMessageCount">Number of WhatsApp/Facebook communication(s) sent<span
                     class="required"> *</span></label>
             <input type="number" formControlName="socialMediaMessageCount" class="textbox" autocomplete="no" min="0" />
         </div>
@@ -437,62 +439,62 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="dateOfMeet">DATE of the Meeting/ Event</label>
+            <label class="label" for="dateOfMeet">Date of the Meeting/Event</label>
             <span class="previewText">{{f.dateOfMeet.value}}</span>
         </div>
 
         <div class="inputField">
-            <label class="label" for="memberCount">NUMBER of MEMBERS Attended Meeting/ Event</label>
+            <label class="label" for="memberCount">Number of Member(s) Attended Meeting/Event</label>
             <span class="previewText">{{f.memberCount.value}}</span>
         </div>
 
         <div class="inputField">
-            <label class="label" for="fourWCount">NUMBER of 4-WHEELERS commuted</label>
+            <label class="label" for="fourWCount">Number of 4-Wheeler(s) commuted</label>
             <span class="previewText">{{f.fourWCount.value}}</span>
         </div>
 
         <div class="inputField">
-            <label class="label" for="twoWCount">NUMBER of 2-WHEELERS commuted</label>
+            <label class="label" for="twoWCount">Number of 2-Wheeler(s) commuted</label>
             <span class="previewText">{{f.twoWCount.value}}</span>
         </div>
 
         <div class="inputField">
-            <label class="label" for="duration">DURATION of the Meeting/ Event</label>
+            <label class="label" for="duration">Duration of the Meeting/Event</label>
             <span class="previewText">{{f.duration.value}} minutes</span>
         </div>
 
         <div class="inputField">
-            <label class="label" for="lightsCount">NUMBER of LIGHTS at the Meeting/ Event</label>
+            <label class="label" for="lightsCount">Number of Light(s) at the Meeting/Event</label>
             <span class="previewText">{{f.lightsCount.value}}</span>
         </div>
 
         <div class="inputField">
-            <label class="label" for="fansCount">NUMBER of FANS at the Meeting/ Event</label>
+            <label class="label" for="fansCount">Number of Fan(s) at the Meeting/Event</label>
             <span class="previewText">{{f.fansCount.value}}</span>
         </div>
 
         <div class="inputField">
-            <label class="label" for="audioCount">NUMBER of PUBLIC AUDIO SYSTEM used</label>
+            <label class="label" for="audioCount">Number of Public Audio System(s) used</label>
             <span class="previewText">{{f.audioCount.value}}</span>
         </div>
 
         <div class="inputField">
-            <label class="label" for="micCount">MICS used</label>
+            <label class="label" for="micCount">Mics used</label>
             <span class="previewText">{{f.micCount.value}}</span>
         </div>
 
         <div class="inputField">
-            <label class="label" for="projectorCount">NUMBER of OVER HEAD PROJECTORS used</label>
+            <label class="label" for="projectorCount">Number of Over Head Projectors used</label>
             <span class="previewText">{{f.projectorCount.value}}</span>
         </div>
 
         <div class="inputField">
-            <label class="label" for="acCount">NUMBER of AIR-CONDITIONERS used</label>
+            <label class="label" for="acCount">Number of Air-Conditioner(s) used</label>
             <span class="previewText">{{f.acCount.value}}</span>
         </div>
 
         <div class="inputField">
-            <label class="label" for="beverageCount">NUMBER of TEA / COFFEE served</label>
+            <label class="label" for="beverageCount">Number of Tea/Coffee served</label>
             <span class="previewText">{{f.beverageCount.value}}</span>
         </div>
 
@@ -501,7 +503,7 @@
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            NUMBER of BREAKFASTS served
+                            Number of Breakfast(s) served
                         </mat-panel-title>
                     </mat-expansion-panel-header>
 
@@ -523,7 +525,7 @@
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            NUMBER of SNACKS served
+                            Number of Snack(s) served
                         </mat-panel-title>
                     </mat-expansion-panel-header>
 
@@ -545,7 +547,7 @@
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            NUMBER of LUNCHES served
+                            Number of Lunch(s) served
                         </mat-panel-title>
                     </mat-expansion-panel-header>
 
@@ -567,7 +569,7 @@
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            NUMBER of DINNERS served
+                            Number of Dinner(s) served
                         </mat-panel-title>
                     </mat-expansion-panel-header>
 
@@ -585,32 +587,32 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="giftCount">NUMBER of GIFTS provided</label>
+            <label class="label" for="giftCount">Number of Gift(s) provided</label>
             <span class="previewText">{{f.giftCount.value}}</span>
         </div>
 
         <div class="inputField">
-            <label class="label" for="guestCount">NUMBER of GUESTS invited</label>
+            <label class="label" for="guestCount">Number of Guest(s) invited</label>
             <span class="previewText">{{f.guestCount.value}}</span>
         </div>
 
         <div class="inputField" *ngIf="f.guestCount.value > 0">
-            <label class="label" for="guestTravelMode">Mode of TRAVEL of the GUESTS</label>
+            <label class="label" for="guestTravelMode">Mode of Travel of the Guest(s)</label>
             <span formControlName="guestTravelMode" class="previewText">{{f.guestTravelMode.value}}</span>
         </div>
 
         <div class="inputField" *ngIf="f.guestCount.value > 0">
-            <label class="label" for="guestStayPeriod">NUMBER of DAYS Guest stayed at Hotel</label>
+            <label class="label" for="guestStayPeriod">Number of Day(s) Guest stayed at Hotel</label>
             <span class="previewText">{{f.guestStayPeriod.value}}</span>
         </div>
 
         <div class="inputField">
-            <label class="label" for="emailCount">NUMBER of EMAIL communication(s) sent</label>
+            <label class="label" for="emailCount">Number of Email communication(s) sent</label>
             <span class="previewText">{{f.emailCount.value}}</span>
         </div>
 
         <div class="inputField">
-            <label class="label" for="socialMediaMessageCount">NUMBER of WHATSAPP/ FACEBOOK communication(s)
+            <label class="label" for="socialMediaMessageCount">Number of WhatsApp/Facebook communication(s)
                 sent</label>
             <span class="previewText">{{f.socialMediaMessageCount.value}}</span>
         </div>
