@@ -84,6 +84,14 @@
 
 </form>
 
+<div *ngIf="showCloud" class="backdrop"></div>
+<div *ngIf="showCloud" class="cloud" [ngClass]="{'scaleup': expandCloud, 'scaledown' : contractCloud}">
+    <img src="../../../../../assets/clouds/high.png">
+    <div class="cloudText">The carbon footprint was 
+        <span class="value">{{cfcValue}} tons</span>
+    </div>
+</div>
+
 <div *ngIf="isPreview" class="backdrop" (click)="isPreview = false"></div>
 
 <div *ngIf="isPreview" class="formPage preview">

@@ -11,7 +11,7 @@ export class ThanksDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<ThanksDialogComponent>) { }
 
   ngOnInit(): void {
-    setTimeout(()=>{ this.dialogRef.close() }, 10000)
+    setTimeout(()=>{ this.dialogRef.close() }, 4000)
   }
 
 }

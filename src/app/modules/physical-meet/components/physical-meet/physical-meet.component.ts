@@ -25,6 +25,11 @@ export class PhysicalMeetComponent implements OnInit {
   public isSnack: boolean = false;
   public isDinner: boolean = false;
 
+  public showCloud: boolean = false;
+  public expandCloud: boolean = false;
+  public contractCloud: boolean = false;
+  public cfcValue: number = 8;
+
   public todaysdate: Date = new Date();
 
   fileName = 'CFC_Input_Physical';
@@ -248,7 +253,19 @@ export class PhysicalMeetComponent implements OnInit {
   submit() {
     this.submitted = true;
     if (!this.form.invalid && this.checkFellowship()) {
-      this.openDialog();
+      this.submitted = false;
+      this.showCloud = true;
+      setTimeout(() => {
+        this.expandCloud = true;
+      }, 10);
+      setTimeout(() => {
+        this.contractCloud = true;
+        this.expandCloud = false;
+      }, 7000);
+      setTimeout(() => {
+        this.showCloud = false;
+        this.openDialog();
+      }, 9000)
     }
   }
 
@@ -277,7 +294,7 @@ export class PhysicalMeetComponent implements OnInit {
       sheetDataArr.push(fields);
     }
 
-    sheetDataArr.push({"Carbon Footprint Value" : 0})
+    sheetDataArr.push({"Carbon Footprint Value" : this.cfcValue})
 
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(sheetDataArr);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();

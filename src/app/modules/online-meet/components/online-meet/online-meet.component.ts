@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { asNativeElements, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import * as XLSX from 'xlsx';
@@ -7,7 +7,7 @@ import { DatePipe } from '@angular/common';
 import { ThanksDialogComponent } from '../thanks-dialog/thanks-dialog.component';
 
 interface columnMapping {
-  [key: string] : string;
+  [key: string]: string;
 }
 
 
@@ -21,11 +21,17 @@ export class OnlineMeetComponent implements OnInit {
   public submitted: boolean = false;
   public isPreview: boolean = false;
   public todaysdate: Date = new Date();
+
+  public showCloud: boolean = false;
+  public expandCloud: boolean = false;
+  public contractCloud: boolean = false;
+  public cfcValue: number = 8;
+
   constructor(private formBuilder: FormBuilder, public dialog: MatDialog, public datepipe: DatePipe) { }
 
   fileName = 'CFC_Input_Online';
 
-  public columnMapping : columnMapping = {
+  public columnMapping: columnMapping = {
     clubName: "Rotary Club of ",
     email: "Email ",
     mobileNo: "Mobile No. ",
@@ -35,7 +41,7 @@ export class OnlineMeetComponent implements OnInit {
     emailCount: "No. of Emails sent ",
     socialMediaMessageCount: "No. of Social Media Messages sent "
   }
-  
+
   ngOnInit(): void {
     if (!this.isPreview) {
       this.form = this.formBuilder.group({
@@ -69,8 +75,22 @@ export class OnlineMeetComponent implements OnInit {
 
   submit() {
     this.submitted = true;
+
     if (!this.form.invalid) {
-      this.openDialog();
+      this.submitted = false;
+      this.showCloud = true;
+      setTimeout(() => {
+        this.expandCloud = true;
+      }, 10);
+      setTimeout(() => {
+        this.contractCloud = true;
+        this.expandCloud = false;
+      }, 7000);
+      setTimeout(() => {
+        this.showCloud = false;
+        this.openDialog();
+      }, 9000)
+
     }
   }
 
@@ -78,10 +98,9 @@ export class OnlineMeetComponent implements OnInit {
     let dialogRef = this.dialog.open(ThanksDialogComponent, {
       width: '30rem'
     });
-
+    this.exportAsXLSX();
     dialogRef.afterClosed().subscribe(result => {
       this.submitted = false;
-      this.exportAsXLSX();
       this.ngOnInit();
     });
   }
@@ -98,7 +117,7 @@ export class OnlineMeetComponent implements OnInit {
       sheetDataArr.push(fields);
     }
 
-    sheetDataArr.push({"Carbon Footprint Value" : 0})
+    sheetDataArr.push({ "Carbon Footprint Value": this.cfcValue })
 
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(sheetDataArr);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
