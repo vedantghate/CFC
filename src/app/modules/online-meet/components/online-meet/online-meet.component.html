@@ -33,7 +33,7 @@
             <label class="label" for="dateOfMeet">Date of the Meeting/Event<span class="required">
                     *</span></label><br />
             <input type="date" formControlName="dateOfMeet" class="textbox mob" autocomplete="no"
-                max="{{todaysdate|date:'yyyy-MM-dd'}}" />
+                max="{{todaysdate|date:'dd-MM-yyyy'}}" />
         </div>
         <div *ngIf="submitted && f.dateOfMeet.errors" class="invalid-feedback">
             <div *ngIf="f.dateOfMeet.errors.required">Date is required</div>
@@ -114,7 +114,7 @@
 
         <div class="inputField">
             <label class="label">Date of the Meeting/ Event</label>
-            <span type="date" class="previewText">{{f.dateOfMeet.value}}</span>
+            <span type="date" class="previewText">{{f.dateOfMeet.value | date:'dd-MM-yyyy'}}</span>
         </div>
 
         <div class="inputField">

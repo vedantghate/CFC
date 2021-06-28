@@ -33,7 +33,7 @@
         <div class="inputField">
             <label class="label" for="dateOfMeet">Date of the Meeting/Event<span class="required"> *</span></label>
             <input type="date" formControlName="dateOfMeet" class="textbox mob" autocomplete="no"
-                max="{{todaysdate|date:'yyyy-MM-dd'}}" />
+                max="{{todaysdate|date:'dd-MM-yyyy'}}" />
         </div>
         <div *ngIf="submitted && f.dateOfMeet.errors" class="invalid-feedback">
             <div *ngIf="f.dateOfMeet.errors.required">Date is required</div>
@@ -195,31 +195,6 @@
             </mat-accordion>
         </div>
 
-        <div class="inputField" *ngIf="f.fellowshipServed.value == 'true'">
-            <mat-accordion>
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Crockery used<span class="required"> *</span>
-                        </mat-panel-title>
-                        <mat-panel-description *ngIf="submitted && f.cutleryType.errors && f.cutleryType.errors.required">
-                            Crockery type is required
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-
-                    <div class="inputField checkboxAccordion">
-                        <mat-radio-group formControlName="cutleryType" class="checkboxes">
-                            <mat-radio-button value="Disposable"> Disposable</mat-radio-button>
-                            <mat-radio-button value="Reusable"> Reusable</mat-radio-button>
-                        </mat-radio-group>
-                        <div *ngIf="submitted && f.cutleryType.errors" class="invalid-feedback">
-                            <div *ngIf="f.cutleryType.errors.required">Crockery type is required</div>
-                        </div>
-                    </div>
-                </mat-expansion-panel>
-            </mat-accordion>
-        </div>
-
         <div class="inputField" *ngIf="isBreakfast">
             <mat-accordion>
                 <mat-expansion-panel>
@@ -352,6 +327,32 @@
             </mat-accordion>
         </div>
 
+        <div class="inputField" *ngIf="f.fellowshipServed.value == 'true'">
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Crockery used<span class="required"> *</span>
+                        </mat-panel-title>
+                        <mat-panel-description *ngIf="submitted && f.cutleryType.errors && f.cutleryType.errors.required">
+                            Crockery type is required
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <div class="inputField checkboxAccordion">
+                        <mat-radio-group formControlName="cutleryType" class="checkboxes">
+                            <mat-radio-button value="Disposable"> Disposable</mat-radio-button>
+                            <mat-radio-button value="Reusable"> Reusable</mat-radio-button>
+                        </mat-radio-group>
+                        <div *ngIf="submitted && f.cutleryType.errors" class="invalid-feedback">
+                            <div *ngIf="f.cutleryType.errors.required">Crockery type is required</div>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+
+
         <div class="inputField">
             <label class="label" for="giftCount">Number of Gift(s) provided<span class="required"> *</span></label>
             <input type="number" formControlName="giftCount" class="textbox" autocomplete="no" min="0" />
@@ -448,7 +449,7 @@
 
         <div class="inputField">
             <label class="label" for="dateOfMeet">Date of the Meeting/Event</label>
-            <span class="previewText">{{f.dateOfMeet.value}}</span>
+            <span class="previewText">{{f.dateOfMeet.value |date:'dd-MM-yyyy'}}</span>
         </div>
 
         <div class="inputField">
