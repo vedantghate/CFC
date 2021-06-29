@@ -4,9 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import * as XLSX from 'xlsx';
 import { DatePipe } from '@angular/common';
 import { ThanksDialogComponent } from '../thanks-dialog/thanks-dialog.component';
-
+import { CalculationsService } from '../../../../services/calculations.service';
 interface columnMapping {
-  [key: string] : string;
+  [key: string]: string;
 }
 
 @Component({
@@ -28,13 +28,13 @@ export class PhysicalMeetComponent implements OnInit {
   public showCloud: boolean = false;
   public expandCloud: boolean = false;
   public contractCloud: boolean = false;
-  public cfcValue: number = 8;
+  public cfcValue: number;
 
   public todaysdate: Date = new Date();
 
   fileName = 'CFC_Input_Physical';
 
-  public columnMapping : columnMapping = {
+  public columnMapping: columnMapping = {
     clubName: "Rotary Club of ",
     email: "Email ",
     mobileNo: "Mobile No. ",
@@ -68,7 +68,12 @@ export class PhysicalMeetComponent implements OnInit {
     socialMediaMessageCount: "No. of Social Media messages sent "
   }
 
-  constructor(private formBuilder: FormBuilder, public dialog: MatDialog, public datepipe: DatePipe) { }
+
+
+  constructor(private formBuilder: FormBuilder,
+    public dialog: MatDialog,
+    public datepipe: DatePipe,
+    public calculationsService: CalculationsService) { }
 
   ngOnInit(): void {
     if (!this.isPreview) {
@@ -250,9 +255,39 @@ export class PhysicalMeetComponent implements OnInit {
     this.isPreview = true;
   }
 
+  calculateCF() {
+    this.cfcValue = this.calculationsService.getFWheeler(this.form.value.fourWCount, 10)
+      + this.calculationsService.getTWheeler(this.form.value.twoWCount, 10)
+      + this.calculationsService.getLight(this.form.value.lightsCount, this.form.value.duration)
+      + this.calculationsService.getFan(this.form.value.fansCount, this.form.value.duration)
+      + this.calculationsService.getAudio(this.form.value.audioCount, this.form.value.duration)
+      + this.calculationsService.getMic(this.form.value.micCount, this.form.value.duration)
+      + this.calculationsService.getProjector(this.form.value.projectorCount, this.form.value.duration)
+      + this.calculationsService.getAC(this.form.value.acCount, this.form.value.duration)
+      + this.calculationsService.getBeverage(this.form.value.beverageCount)
+      + this.calculationsService.getCommunication(this.form.value.emailCount, this.form.value.socialMediaMessageCount)
+      + this.calculateMeals()
+
+    this.cfcValue = Math.round((this.cfcValue + Number.EPSILON) * 100) / 100
+  }
+
+  calculateMeals(){
+    let vegMealCount = this.form.value.vegBreakfastCount
+      + this.form.value.vegLunchCount
+      + this.form.value.vegDinnerCount
+
+    let nonvegMealCount = this.form.value.nonvegBreakfastCount
+    + this.form.value.nonvegLunchCount
+    + this.form.value.nonvegDinnerCount
+    
+    return this.calculationsService.getMeal(vegMealCount, nonvegMealCount);
+  }
+
+
   submit() {
     this.submitted = true;
     if (!this.form.invalid && this.checkFellowship()) {
+      this.calculateCF();
       this.submitted = false;
       this.showCloud = true;
       setTimeout(() => {
@@ -282,7 +317,6 @@ export class PhysicalMeetComponent implements OnInit {
     });
   }
 
-
   public exportAsXLSX(): void {
     let sheetDataArr = [];
     for (let key in this.form.value) {
@@ -294,7 +328,7 @@ export class PhysicalMeetComponent implements OnInit {
       sheetDataArr.push(fields);
     }
 
-    sheetDataArr.push({"Carbon Footprint Value" : this.cfcValue})
+    sheetDataArr.push({ "Carbon Footprint Value": this.cfcValue })
 
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(sheetDataArr);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();

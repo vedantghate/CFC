@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import * as XLSX from 'xlsx';
 import { DatePipe } from '@angular/common';
 
+import { CalculationsService } from '../../../../services/calculations.service';
 import { ThanksDialogComponent } from '../thanks-dialog/thanks-dialog.component';
 
 interface columnMapping {
@@ -25,9 +26,12 @@ export class OnlineMeetComponent implements OnInit {
   public showCloud: boolean = false;
   public expandCloud: boolean = false;
   public contractCloud: boolean = false;
-  public cfcValue: number = 8;
+  public cfcValue: number;
 
-  constructor(private formBuilder: FormBuilder, public dialog: MatDialog, public datepipe: DatePipe) { }
+  constructor(private formBuilder: FormBuilder, 
+    public dialog: MatDialog, 
+    public datepipe: DatePipe,
+    public calculationsService: CalculationsService) { }
 
   fileName = 'CFC_Input_Online';
 
@@ -73,10 +77,18 @@ export class OnlineMeetComponent implements OnInit {
     this.isPreview = true;
   }
 
+  calculateCF() {
+    this.cfcValue = this.calculationsService.getOnline(this.form.value.memberCount, this.form.value.duration)
+      + this.calculationsService.getCommunication(this.form.value.emailCount, this.form.value.socialMediaMessageCount)
+
+    this.cfcValue = Math.round((this.cfcValue + Number.EPSILON) * 100) / 100
+  }
+
   submit() {
     this.submitted = true;
 
     if (!this.form.invalid) {
+      this.calculateCF();
       this.submitted = false;
       this.showCloud = true;
       setTimeout(() => {
