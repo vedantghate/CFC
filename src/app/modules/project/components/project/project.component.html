@@ -1,7 +1,7 @@
 <form [formGroup]="form" class="formPage">
 
     <div class="inputsContainer">
-        <h2>Physical Meet/Event Details</h2>
+        <h2>Project Details</h2>
 
         <div class="inputField">
             <label class="label" for="clubName">Rotary Club of<span class="required"> *</span></label>
@@ -62,6 +62,15 @@
         </div>
         <div *ngIf="submitted && f.twoWCount.errors" class="invalid-feedback">
             <div *ngIf="f.twoWCount.errors.required">Two Wheelers' Count is required</div>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="distToProject">Distance travelled to Project Site<span class="required"> *</span></label>
+            <input type="number" formControlName="distToProject" placeholder=" in KMs" class="textbox" autocomplete="no"
+                min="0" />
+        </div>
+        <div *ngIf="submitted && f.distToProject.errors" class="invalid-feedback">
+            <div *ngIf="f.distToProject.errors.required">Duration is required</div>
         </div>
 
         <div class="inputField">
@@ -465,6 +474,11 @@
         <div class="inputField">
             <label class="label" for="twoWCount">Number of 2-Wheeler(s) commuted</label>
             <span class="previewText">{{f.twoWCount.value}}</span>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="distToProject">Distance travelled to Project Site</label>
+            <span class="previewText">{{f.distToProject.value}} km</span>
         </div>
 
         <div class="inputField">

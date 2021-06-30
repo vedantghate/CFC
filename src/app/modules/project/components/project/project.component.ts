@@ -10,11 +10,11 @@ interface columnMapping {
 }
 
 @Component({
-  selector: 'app-physical-meet',
-  templateUrl: './physical-meet.component.html',
-  styleUrls: ['./physical-meet.component.scss']
+  selector: 'app-project',
+  templateUrl: './project.component.html',
+  styleUrls: ['./project.component.scss']
 })
-export class PhysicalMeetComponent implements OnInit {
+export class ProjectComponent implements OnInit {
 
   public form: FormGroup;
   public submitted: boolean = false;
@@ -32,7 +32,7 @@ export class PhysicalMeetComponent implements OnInit {
 
   public todaysdate: Date = new Date();
 
-  fileName = 'CFC_Input_Physical';
+  fileName = 'CFC_Input_Project';
 
   public columnMapping: columnMapping = {
     clubName: "Rotary Club of ",
@@ -65,7 +65,8 @@ export class PhysicalMeetComponent implements OnInit {
     //guestTravelMode: "Guest's travel mode ",
     guestStayPeriod: "Guest's stay period ",
     emailCount: "No. of Emails sent ",
-    socialMediaMessageCount: "No. of Social Media messages sent "
+    socialMediaMessageCount: "No. of Social Media messages sent ",
+    distToProject: "Distance Travelled to Project Site"
   }
 
 
@@ -85,6 +86,7 @@ export class PhysicalMeetComponent implements OnInit {
         memberCount: ['', Validators.required],
         fourWCount: ['', Validators.required],
         twoWCount: ['', Validators.required],
+        distToProject: ['', Validators.required],
         duration: ['', Validators.required],
         lightsCount: ['', Validators.required],
         fansCount: ['', Validators.required],
@@ -256,8 +258,8 @@ export class PhysicalMeetComponent implements OnInit {
   }
 
   calculateCF() {
-    this.cfcValue = this.calculationsService.getFWheeler(this.form.value.fourWCount, 10)
-      + this.calculationsService.getTWheeler(this.form.value.twoWCount, 10)
+    this.cfcValue = this.calculationsService.getFWheeler(this.form.value.fourWCount, this.form.value.distToProject)
+      + this.calculationsService.getTWheeler(this.form.value.twoWCount, this.form.value.distToProject)
       + this.calculationsService.getLight(this.form.value.lightsCount, this.form.value.duration)
       + this.calculationsService.getFan(this.form.value.fansCount, this.form.value.duration)
       + this.calculationsService.getAudio(this.form.value.audioCount, this.form.value.duration)

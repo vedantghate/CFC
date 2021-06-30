@@ -4,6 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 
 import { OnlineMeetModule } from './modules/online-meet/online-meet.module';
 import { PhysicalMeetModule } from './modules/physical-meet/physical-meet.module';
+import { ProjectModule } from './modules/project/project.module';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
     path: 'physical-meet',
     //loadChildren: './modules/physical-meet/physical-meet.module#PhysicalMeetModule',
     loadChildren: () => import('src/app/modules/physical-meet/physical-meet.module').then(m => m.PhysicalMeetModule)
+  },
+  {
+    path: 'project',
+    loadChildren: () => import('src/app/modules/project/project.module').then(m => m.ProjectModule)
   },
   {
     path: '**',

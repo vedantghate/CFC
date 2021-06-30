@@ -100,6 +100,15 @@ export class CalculationsService {
     return ( (nv * 0.00126) + (v * 0.0007) + (n*0.000085/2) + n * ((0.000125 + 0.00000708)) )
   }
 
+  getSB(v: number, nv: number){
+    /**
+     * 400 gm co2 emission per snacks/breakfast = 0.0004 Ton co2 emission
+     */
+
+    let n = v + nv;
+    return ( n * 0.0004 )
+  }
+
   getCommunication(e: number, sm: number){
     /**
      * 4 gm Co2 emission per email = 0.000004 Ton Co2 emission
@@ -108,6 +117,25 @@ export class CalculationsService {
      */
 
     return ( e * 0.000004 + sm * 1.4/100000000)
+  }
+
+  getGuest(n: number, d: number){
+    /**
+     * For one day stay of a guest – a) Food consumption + b) solid waste generation + c) waste water treatment
+     * 
+     * A) Food Consumption – 
+     * 1 breakfast + 1 Lunch + 1 Dinner + 2 tea + 1 Litre water bottle = 0.0026 Tons of Co2
+     * 
+     * B) Solid waste generation – 
+     * 50 gm per serving – total lunch, breakfast & dinner = 200 gm solid waste generation – 0.0005 Tons of co2
+     * Disposable paper cup – 2 tea cup 110 gm emission per paper cup = 0.00022 Tons Co2 emission
+     * 1 litre water bottle – 170 gm carbon emission = 0.00017 Tons of Co2 carbon emission
+     * 
+     * C) Waste water treatment -
+     * Per person 95 litre for one day = 0.000067 Tons of Co2 carbon emission
+     */
+
+    return ( n * d * (0.0026 + 0.0005 + 0.00022 + 0.00017 + 0.000067) )
   }
 
   getOnline(n: number, d: number){

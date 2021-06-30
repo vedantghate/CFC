@@ -1,0 +1,227 @@
+.formPage {
+    text-align: center;
+    padding-bottom: 5rem;
+    padding-left: 20%;
+    padding-right: 20%;
+
+    .inputsContainer {
+        background-color: aliceblue;
+        padding: 2rem;
+        flex-wrap: wrap;
+        margin: 5rem 2rem 5rem 2rem;
+
+        .inputField {
+            margin: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+
+            .label {
+                font-size: 1rem;
+                color: #5a6169;
+                align-self: center;
+                text-align: left;
+            }
+
+            .textbox {
+                font-size: 1rem;
+                border: 2px solid #33a5e8;
+                border-radius: 4px;
+                height: 2rem;
+                background-color: #fff;
+                text-align: right;
+            }
+
+            .previewText {
+                font-size: 1rem;
+                border: 2px solid #33a5e8;
+                border-radius: 4px;
+                //height: 2rem;
+                //width: 10rem;
+                padding: 0.5rem;
+                background-color: #fff;
+                text-align: right;
+            }
+
+            .mob {
+                width: 12.8rem;
+            }
+        }
+
+        .checkboxAccordion {
+            display: block;
+
+            .checkboxes {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+                margin: 1rem;
+            }
+        }
+    }
+
+    .required {
+        color: #e55858;
+        font-size: 0.75rem;
+    }
+
+    .invalid-feedback {
+        color: #e55858;
+        font-size: 0.75rem;
+        text-align: right;
+        margin: -1rem 1.5rem 0rem 0rem;
+    }
+
+    .btn {
+        width: 6rem;
+        min-height: 2rem;
+        border-radius: 3px;
+        padding: 6px 20px;
+        border: none;
+        background: #16478e;
+        color: #ffffff;
+        font-size: 14px;
+        cursor: pointer;
+        margin: 0rem 2rem 0rem 2rem;
+    }
+
+    .green{
+        background: limegreen;
+    }
+
+    .amber{
+        background: darkorange;
+    }
+}
+
+h2{
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #086194;
+}
+
+.cloud {
+    position: fixed;
+    top: 15%;
+    left: 27%;
+    z-index: 3;
+    transition: all 2s ease-in-out;
+
+    img{
+        width: 30rem;
+        height: 30rem;
+        object-fit: contain;
+    }
+
+    .cloudText {
+        width: 190px;
+        z-index: 2000;
+        color: white;
+        font-size: 1rem;
+        text-align: center;
+        position: absolute;
+        top: 44%;
+        left: 30%;
+
+        .value {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+.scaleup{
+    transform: scale(1.6);
+}
+
+.scaledown{
+    transform: scale(0.1);
+}
+
+.preview {
+    background-color: #fff !important;
+    z-index: 10;
+    height: 30rem;
+    overflow: auto;
+    position: fixed;
+    top: 10%;
+    left: 10%;
+
+    h3 {
+        margin: 2rem 0rem -3rem 0rem;
+        font-size: 2rem;
+        color: #5a6169;
+    }
+}
+
+.backdrop {
+    background: black;
+    opacity: 0.6;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.mat-accordion {
+    width: 100%;
+}
+
+.mat-expansion-panel {
+    box-shadow: none;
+    background: none;
+    color: #5a6169;
+}
+
+.mat-expansion-panel-header {
+    padding: 0px 10px 0px 0px;
+}
+
+.mat-expansion-panel-header-title {
+    font-size: 1rem;
+    color: #5a6169;
+    align-self: center;
+}
+
+.mat-expansion-panel-header-description {
+    color: #e55858;
+    font-size: 0.75rem;
+}
+
+input:focus {
+    background-color: rgb(247, 247, 128) !important;
+    font-weight: 600;
+}
+
+@media print{
+    .formPage{
+        padding-left: 5%;
+        padding-right: 5%;
+
+        .inputsContainer {
+            background-color: #fff;
+            padding: 0rem;
+            margin: 0rem;
+
+            .inputField {
+                margin: 0.5rem;
+            }
+        }
+    }
+}
+
+@media not print {
+    @media (max-width: 600px) {
+        .formPage .inputsContainer {
+            display: flex;
+            background-color: #fff;
+            padding: 0rem;
+            flex-wrap: wrap;
+            margin: 0rem;
+
+            .inputField {
+                display: block;
+            }
+        }
+    }
+}
