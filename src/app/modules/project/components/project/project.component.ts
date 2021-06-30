@@ -272,25 +272,26 @@ export class ProjectComponent implements OnInit {
       + this.calculateMeals()
       + this.calculateSB()
 
-    this.cfcValue = Math.round((this.cfcValue + Number.EPSILON) * 100) / 100
+    this.cfcValue = this.cfcValue * 1000  //converting Tons to KGs
+    this.cfcValue = Math.round((this.cfcValue + Number.EPSILON) * 100) / 100    //rounding off
   }
 
-  calculateSB(){
+  calculateSB() {
     let vegMealCount = this.form.value.vegBreakfastCount
       + this.form.value.vegSnacksCount
 
     let nonvegMealCount = this.form.value.nonvegBreakfastCount
-    + this.form.value.nonvegSnacksCount
-    
+      + this.form.value.nonvegSnacksCount
+
     return this.calculationsService.getSB(vegMealCount, nonvegMealCount);
   }
 
-  calculateMeals(){
+  calculateMeals() {
     let vegMealCount = this.form.value.vegLunchCount
       + this.form.value.vegDinnerCount
 
     let nonvegMealCount = this.form.value.nonvegLunchCount
-    + this.form.value.nonvegDinnerCount
+      + this.form.value.nonvegDinnerCount
 
     return this.calculationsService.getMeal(vegMealCount, nonvegMealCount)
   }
@@ -340,7 +341,7 @@ export class ProjectComponent implements OnInit {
       sheetDataArr.push(fields);
     }
 
-    sheetDataArr.push({ "Carbon Footprint Value": this.cfcValue })
+    sheetDataArr.push({ "Carbon Footprint Value": this.cfcValue+" kg" })
 
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(sheetDataArr);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();

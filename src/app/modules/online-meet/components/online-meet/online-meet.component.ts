@@ -28,8 +28,8 @@ export class OnlineMeetComponent implements OnInit {
   public contractCloud: boolean = false;
   public cfcValue: number;
 
-  constructor(private formBuilder: FormBuilder, 
-    public dialog: MatDialog, 
+  constructor(private formBuilder: FormBuilder,
+    public dialog: MatDialog,
     public datepipe: DatePipe,
     public calculationsService: CalculationsService) { }
 
@@ -81,7 +81,8 @@ export class OnlineMeetComponent implements OnInit {
     this.cfcValue = this.calculationsService.getOnline(this.form.value.memberCount, this.form.value.duration)
       + this.calculationsService.getCommunication(this.form.value.emailCount, this.form.value.socialMediaMessageCount)
 
-    this.cfcValue = Math.round((this.cfcValue + Number.EPSILON) * 100) / 100
+    this.cfcValue = this.cfcValue * 1000  //converting Tons to KGs
+    this.cfcValue = Math.round((this.cfcValue + Number.EPSILON) * 100) / 100    //rounding off
   }
 
   submit() {
@@ -129,7 +130,7 @@ export class OnlineMeetComponent implements OnInit {
       sheetDataArr.push(fields);
     }
 
-    sheetDataArr.push({ "Carbon Footprint Value": this.cfcValue })
+    sheetDataArr.push({ "Carbon Footprint Value": this.cfcValue+" kg" })
 
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(sheetDataArr);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();

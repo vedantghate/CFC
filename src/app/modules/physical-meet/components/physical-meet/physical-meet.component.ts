@@ -269,8 +269,8 @@ export class PhysicalMeetComponent implements OnInit {
       + this.calculationsService.getGuest(this.form.value.guestCount, this.form.value.guestStayPeriod)
       + this.calculateMeals()
       + this.calculateSB()
-
-    this.cfcValue = Math.round((this.cfcValue + Number.EPSILON) * 100) / 100
+    this.cfcValue = this.cfcValue * 1000  //converting Tons to KGs
+    this.cfcValue = Math.round((this.cfcValue + Number.EPSILON) * 100) / 100    //rounding off
   }
 
   calculateSB(){
@@ -338,7 +338,7 @@ export class PhysicalMeetComponent implements OnInit {
       sheetDataArr.push(fields);
     }
 
-    sheetDataArr.push({ "Carbon Footprint Value": this.cfcValue })
+    sheetDataArr.push({ "Carbon Footprint Value": this.cfcValue+" kg" })
 
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(sheetDataArr);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
