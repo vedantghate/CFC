@@ -49,18 +49,35 @@
         </div>
 
         <div class="inputField">
-            <label class="label" for="guestCount">Number of Guest(s) invited</label>
-            <span class="previewText">{{f.guestCount.value}}</span>
+            <label class="label" for="guestCount">Number of Guest(s) invited<span class="required"> *</span></label>
+            <input type="number" formControlName="guestCount" class="textbox" autocomplete="no" min="0" />
+        </div>
+        <div *ngIf="submitted && f.guestCount.errors" class="invalid-feedback">
+            <div *ngIf="f.guestCount.errors.required">Guests Invited is required</div>
         </div>
 <!-- 
         <div class="inputField" *ngIf="f.guestCount.value > 0">
-            <label class="label" for="guestTravelMode">Mode of Travel of the Guest(s)</label>
-            <span formControlName="guestTravelMode" class="previewText">{{f.guestTravelMode.value}}</span>
+            <label class="label" for="guestTravelMode">Mode of Travel of the Guest(s)<span class="required">
+                    *</span></label>
+            <select formControlName="guestTravelMode" class="textbox mob">
+                <option value="" disabled>Choose a Mode</option>
+                <option ngValue="road">Road</option>
+                <option ngValue="rail">Rail</option>
+                <option ngValue="air">Air</option>
+                <option ngValue="none">None</option>
+            </select>
+        </div>
+        <div *ngIf="submitted && f.guestTravelMode.errors" class="invalid-feedback">
+            <div *ngIf="f.guestTravelMode.errors.required">Guests Travel Mode is required</div>
         </div> -->
 
         <div class="inputField" *ngIf="f.guestCount.value > 0">
-            <label class="label" for="guestStayPeriod">Number of Day(s) Guest stayed at Hotel</label>
-            <span class="previewText">{{f.guestStayPeriod.value}}</span>
+            <label class="label" for="guestStayPeriod">Number of Day(s) Guest stayed at Hotel<span class="required">
+                    *</span></label>
+            <input type="number" formControlName="guestStayPeriod" class="textbox" autocomplete="no" min="0" />
+        </div>
+        <div *ngIf="submitted && f.guestStayPeriod.errors" class="invalid-feedback">
+            <div *ngIf="f.guestStayPeriod.errors.required">Guest Stay Duration is required</div>
         </div>
 
         <div class="inputField">

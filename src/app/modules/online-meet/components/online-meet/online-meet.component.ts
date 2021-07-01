@@ -2,6 +2,8 @@ import { asNativeElements, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import * as XLSX from 'xlsx';
+import jspdf from 'jspdf';
+import autoTable from 'jspdf-autotable';
 import { DatePipe } from '@angular/common';
 
 import { CalculationsService } from '../../../../services/calculations.service';
@@ -112,7 +114,8 @@ export class OnlineMeetComponent implements OnInit {
     let dialogRef = this.dialog.open(ThanksDialogComponent, {
       width: '30rem'
     });
-    this.exportAsXLSX();
+    //this.exportAsXLSX();
+    this.exportAsPDF();
     dialogRef.afterClosed().subscribe(result => {
       this.submitted = false;
       this.ngOnInit();
@@ -131,13 +134,52 @@ export class OnlineMeetComponent implements OnInit {
       sheetDataArr.push(fields);
     }
 
-    sheetDataArr.push({ "Carbon Footprint Value": this.cfcValue+" kg" })
+    sheetDataArr.push({ "Carbon Footprint Value": this.cfcValue + " kg" })
 
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(sheetDataArr);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
     const excellFile = `${this.fileName}_Rotary Club of ${this.form.value.clubName}_${this.datepipe.transform(new Date(), 'dd-MM-yyyy')}.xlsx`;
     XLSX.writeFile(wb, excellFile);
+  }
+
+  public exportAsPDF() {
+    let pdf = new jspdf();
+    let cols = ["Field", "Value Entered"]
+    let rows = [];
+
+    var pageWidth = pdf.internal.pageSize.width || pdf.internal.pageSize.getWidth();
+
+    var img = new Image();
+    img.src = "assets/pdfHeader.png";
+    pdf.addImage(img,'png',0,0,pageWidth,40);
+    pdf.text("CFC - Online Meeting", pageWidth / 2, 50, { align: 'center' });
+
+    for (let key in this.form.value) {
+      let row = [
+        this.columnMapping[key], this.form.value[key],
+      ]
+      rows.push(row);
+    }
+
+    let cfcvalue = this.cfcValue + " kg";
+    rows.push(["Carbon Footprint Value", cfcvalue])
+
+    autoTable(pdf, {
+      tableLineWidth: 1,
+      margin: { top: 60 },
+      body: rows,
+      willDrawCell: function(data) {
+        var rows = data.table.body;
+        if (rows.length === 1) {
+        } else if (data.row.index === rows.length - 1) {
+          pdf.setFillColor(0, 255, 0);
+          pdf.setFont("","bold");
+        }
+      }
+    })
+    let pdfName = `${this.fileName}_Rotary Club of ${this.form.value.clubName}_${this.datepipe.transform(new Date(), 'dd-MM-yyyy')}.pdf`;
+    pdf.save(pdfName);
   }
 
 }
