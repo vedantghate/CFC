@@ -34,7 +34,7 @@ export class PhysicalMeetComponent implements OnInit {
 
   public todaysdate: Date = new Date();
 
-  fileName = 'CFC_Input_Physical';
+  fileName = 'CFC_Physical';
 
   public columnMapping: columnMapping = {
     clubName: "Rotary Club of ",
@@ -360,15 +360,23 @@ export class PhysicalMeetComponent implements OnInit {
 
     var img = new Image();
     img.src = "assets/pdfHeader.png";
-    pdf.addImage(img,'png',0,0,pageWidth,40);
+    pdf.addImage(img, 'png', 0, 0, pageWidth, 40);
 
     pdf.text("CFC - Physical Meeting", pageWidth / 2, 50, { align: 'center' });
 
     for (let key in this.form.value) {
-      let row = [
-        this.columnMapping[key], this.form.value[key],
-      ]
-      rows.push(row);
+      if (typeof (this.form.value[key]) == 'number' && this.form.value[key] > 0) {
+        let row = [
+          this.columnMapping[key], this.form.value[key],
+        ]
+        rows.push(row);
+      } else if (this.form.value[key] == 'string' && key != 'fellowshipServed') {
+        let row = [
+          this.columnMapping[key], this.form.value[key],
+        ]
+        rows.push(row);
+      }
+
     }
 
     let cfcvalue = this.cfcValue + " kg";

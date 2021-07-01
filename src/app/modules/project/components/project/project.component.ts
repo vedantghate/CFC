@@ -34,7 +34,7 @@ export class ProjectComponent implements OnInit {
 
   public todaysdate: Date = new Date();
 
-  fileName = 'CFC_Input_Project';
+  fileName = 'CFC_Project';
 
   public columnMapping: columnMapping = {
     clubName: "Rotary Club of ",
@@ -367,10 +367,18 @@ export class ProjectComponent implements OnInit {
     pdf.text("CFC - Project Visit", pageWidth / 2, 50, { align: 'center' });
 
     for (let key in this.form.value) {
-      let row = [
-        this.columnMapping[key], this.form.value[key],
-      ]
-      rows.push(row);
+      if (typeof (this.form.value[key]) == 'number' && this.form.value[key] > 0) {
+        let row = [
+          this.columnMapping[key], this.form.value[key],
+        ]
+        rows.push(row);
+      } else if (this.form.value[key] == 'string' && key != 'fellowshipServed') {
+        let row = [
+          this.columnMapping[key], this.form.value[key],
+        ]
+        rows.push(row);
+      }
+
     }
 
     let cfcvalue = this.cfcValue + " kg";

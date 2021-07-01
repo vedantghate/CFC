@@ -35,7 +35,7 @@ export class OnlineMeetComponent implements OnInit {
     public datepipe: DatePipe,
     public calculationsService: CalculationsService) { }
 
-  fileName = 'CFC_Input_Online';
+  fileName = 'CFC_Online';
 
   public columnMapping: columnMapping = {
     clubName: "Rotary Club of ",
