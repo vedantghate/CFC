@@ -101,6 +101,7 @@ export class OnlineMeetComponent implements OnInit {
       }, 7000);
       setTimeout(() => {
         this.showCloud = false;
+        this.contractCloud = false;
         this.openDialog();
       }, 9000)
 
