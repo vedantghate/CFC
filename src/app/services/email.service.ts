@@ -11,7 +11,6 @@ export class EmailService {
 
   sendEmail(data: any){
     var email_api = "https://cfc-service.vercel.app/email";
-    console.log(data)
     return this.http.post(email_api, data);
   }
 }
