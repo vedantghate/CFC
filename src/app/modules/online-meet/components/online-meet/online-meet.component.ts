@@ -193,8 +193,8 @@ export class OnlineMeetComponent implements OnInit {
 
   public emailPdf(document: string){
     var data = {
-      email: this.form.value["email"],
-      doc: document
+      "email": this.form.value["email"],
+      "doc": document
     }
 
     this.emailService.sendEmail(data).subscribe();
