@@ -7,6 +7,7 @@ import autoTable from 'jspdf-autotable';
 import { DatePipe } from '@angular/common';
 
 import { CalculationsService } from '../../../../services/calculations.service';
+import { EmailService } from 'src/app/services/email.service';
 import { ThanksDialogComponent } from '../thanks-dialog/thanks-dialog.component';
 
 interface columnMapping {
@@ -33,7 +34,8 @@ export class OnlineMeetComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     public dialog: MatDialog,
     public datepipe: DatePipe,
-    public calculationsService: CalculationsService) { }
+    public calculationsService: CalculationsService,
+    public emailService: EmailService) { }
 
   fileName = 'CFC_Online';
 
@@ -178,8 +180,24 @@ export class OnlineMeetComponent implements OnInit {
         }
       }
     })
+    
     let pdfName = `${this.fileName}_Rotary Club of ${this.form.value.clubName}_${this.datepipe.transform(new Date(), 'dd-MM-yyyy')}.pdf`;
     pdf.save(pdfName);
+    
+    var out = pdf.output();
+    var url = 'data:application/pdf;base64,' + btoa(out);
+    
+    this.emailPdf(url);
+
+  }
+
+  public emailPdf(document: string){
+    var data = {
+      email: this.form.value["email"],
+      doc: document
+    }
+
+    this.emailService.sendEmail(data).subscribe();
   }
 
 }

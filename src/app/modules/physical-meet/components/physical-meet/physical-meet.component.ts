@@ -7,6 +7,8 @@ import autoTable from 'jspdf-autotable';
 import { DatePipe } from '@angular/common';
 import { ThanksDialogComponent } from '../thanks-dialog/thanks-dialog.component';
 import { CalculationsService } from '../../../../services/calculations.service';
+import { EmailService } from 'src/app/services/email.service';
+
 interface columnMapping {
   [key: string]: string;
 }
@@ -75,7 +77,8 @@ export class PhysicalMeetComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     public dialog: MatDialog,
     public datepipe: DatePipe,
-    public calculationsService: CalculationsService) { }
+    public calculationsService: CalculationsService,
+    public emailService: EmailService) { }
 
   ngOnInit(): void {
     if (!this.isPreview) {
@@ -397,6 +400,20 @@ export class PhysicalMeetComponent implements OnInit {
     })
     let pdfName = `${this.fileName}_Rotary Club of ${this.form.value.clubName}_${this.datepipe.transform(new Date(), 'dd-MM-yyyy')}.pdf`;
     pdf.save(pdfName);
+    var out = pdf.output();
+    var url = 'data:application/pdf;base64,' + btoa(out);
+
+    this.emailPdf(url);
+
+  }
+
+  public emailPdf(document: string) {
+    var data = {
+      email: this.form.value["email"],
+      doc: document
+    }
+
+    this.emailService.sendEmail(data).subscribe();
   }
 
 }
