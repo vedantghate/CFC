@@ -33,13 +33,14 @@ export class ProjectComponent implements OnInit {
   public expandCloud: boolean = false;
   public contractCloud: boolean = false;
   public cfcValue: number;
+  public clubtype = "Rotary";
 
   public todaysdate: Date = new Date();
 
   fileName = 'CFC_Project';
 
   public columnMapping: columnMapping = {
-    clubName: "Rotary Club of ",
+    clubName: "",
     email: "Email ",
     mobileNo: "Mobile No. ",
     dateOfMeet: "Date ",
@@ -368,7 +369,7 @@ export class ProjectComponent implements OnInit {
     img.src = "assets/pdfHeader.png";
     pdf.addImage(img, 'png', 0, 0, pageWidth, 40);
     pdf.text("CFC - Project Visit", pageWidth / 2, 50, { align: 'center' });
-
+    this.columnMapping['clubName'] = this.clubtype+" Club of "
     for (let key in this.form.value) {
       if (typeof (this.form.value[key]) == 'number' && this.form.value[key] > 0) {
         let row = [
@@ -400,7 +401,7 @@ export class ProjectComponent implements OnInit {
         }
       }
     })
-    let pdfName = `${this.fileName}_Rotary Club of ${this.form.value.clubName}_${this.datepipe.transform(new Date(), 'dd-MM-yyyy')}.pdf`;
+    let pdfName = `${this.fileName}_${this.clubtype} Club of ${this.form.value.clubName}_${this.datepipe.transform(new Date(), 'dd-MM-yyyy')}.pdf`;
     pdf.save(pdfName);
     var out = pdf.output();
     var url = 'data:application/pdf;base64,' + btoa(out);

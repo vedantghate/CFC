@@ -30,6 +30,7 @@ export class OnlineMeetComponent implements OnInit {
   public expandCloud: boolean = false;
   public contractCloud: boolean = false;
   public cfcValue: number;
+  public clubtype = "Rotary";
 
   constructor(private formBuilder: FormBuilder,
     public dialog: MatDialog,
@@ -40,7 +41,7 @@ export class OnlineMeetComponent implements OnInit {
   fileName = 'CFC_Online';
 
   public columnMapping: columnMapping = {
-    clubName: "Rotary Club of ",
+    clubName: "",
     email: "Email ",
     mobileNo: "Mobile No. ",
     dateOfMeet: "Date ",
@@ -157,6 +158,7 @@ export class OnlineMeetComponent implements OnInit {
     pdf.addImage(img,'png',0,0,pageWidth,40);
     pdf.text("CFC - Online Meeting", pageWidth / 2, 50, { align: 'center' });
 
+    this.columnMapping['clubName'] = this.clubtype+" Club of "
     for (let key in this.form.value) {
       let row = [
         this.columnMapping[key], this.form.value[key],
@@ -181,7 +183,7 @@ export class OnlineMeetComponent implements OnInit {
       }
     })
     
-    let pdfName = `${this.fileName}_Rotary Club of ${this.form.value.clubName}_${this.datepipe.transform(new Date(), 'dd-MM-yyyy')}.pdf`;
+    let pdfName = `${this.fileName}_${this.clubtype} Club of ${this.form.value.clubName}_${this.datepipe.transform(new Date(), 'dd-MM-yyyy')}.pdf`;
     pdf.save(pdfName);
     
     var out = pdf.output();

@@ -2,8 +2,17 @@
 
     <div class="inputsContainer">
         <h2>Online Meeting</h2>
+
         <div class="inputField">
-            <label class="label" for="clubName">Rotary Club of<span class="required"> *</span></label><br />
+            <label class="label" for="clubtype">Club type</label>
+            <select class="textbox" id="clubtype" [(ngModel)]="clubtype" [ngModelOptions]="{standalone: true}" required>
+              <option value="Rotary">Rotary</option>
+              <option value="Rotaract">Rotaract</option>
+            </select>
+        </div>
+
+        <div class="inputField">
+            <label class="label" for="clubName">{{clubtype}} Club of<span class="required"> *</span></label><br />
             <input type="text" formControlName="clubName" class="textbox" autocomplete="no" />
         </div>
         <div *ngIf="submitted && f.clubName.errors" class="invalid-feedback">
@@ -98,7 +107,7 @@
     <h3>Preview</h3>
     <div class="inputsContainer">
         <div class="inputField">
-            <label class="label">Rotary Club of</label>
+            <label class="label">{{clubtype}} Club of</label>
             <span type="text" class="previewText" >{{f.clubName.value}}</span>
         </div>
 
